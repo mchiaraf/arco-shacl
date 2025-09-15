@@ -1,0 +1,73 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+ex:TimeIndexedTypedLocationShape
+    a sh:NodeShape ;
+    sh:targetClass a-loc:TimeIndexedTypedLocationShape ;
+	#OK
+	sh:property [     
+		sh:path a-loc:hasLocationType ;     
+		sh:class a-loc:LocationType ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione della localizzazione nel tempo con la sua tipologia è obbligatoria: a-loc:hasLocationType deve essere materializzata"
+		] ;
+	sh:or (
+		[
+			sh:path a-loc:atLocation ;     
+			sh:class clv:Feature ;
+			sh:minCount 1 ;
+			sh:maxCount 1 ;
+			sh:severity sh:Violation ;
+        	sh:message "La relazione della localizzazione nel tempo con la sua clv:Feature è obbligatoria: in mancanza della feature deve essere presente il contenitore fisico che ospita il bene mobile cis:Site/cis:CulturalInstituteOrSite"
+		]
+		[
+			sh:path a-loc:atSite ;
+			sh:or (
+				[ sh:class cis:Site ]
+				[ sh:class cis:CulturalInstituteOrSite ]
+			) ;
+			sh:minCount 1 ;
+			sh:maxCount 1 ;
+			sh:severity sh:Violation ;
+        	sh:message "La relazione della localizzazione nel tempo con il suo contenitore fisico è obbligatoria: in mancanza del contenitore fisico deve essere presente la feature in cui si trova il bene immobile: clv:Feature"
+		]
+	) ;
+	sh:property [   
+		# dall'anagrafica minima non pare obbligatoria, da controllare           
+		sh:path clv:hasGeometry ;     
+		sh:class a-loc:Geometry ;
+		sh:minCount 1 ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione della localizzazione nel tempo con la sua georeferenziazione è obbligatoria: clv:hasGeometry deve essere materializzata"
+		] ;
+	sh:property [   
+		#non obbligatoria           
+		sh:path a-loc:hasGeologicalContext ;     
+		sh:class a-loc:GeologicalContext ;
+		] ;
+	sh:property [   
+		#non obbligatoria           
+		sh:path a-loc:hasCulturalInstituteOrSite ;     
+		sh:class cis:CulturalInstituteOrSite ;
+		] .

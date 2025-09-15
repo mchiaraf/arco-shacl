@@ -1,0 +1,71 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+ex:GeometryShape
+    a sh:NodeShape ;
+    sh:targetClass a-loc:Geometry ;
+	sh:property [              
+		sh:path clv:hasGeometryType ;     
+		sh:class clv:GeometryType ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione della georeferenziazione con la sua tipologia è obbligatoria: clv:hasGeometryType deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path clv:serialization ;     
+		sh:datatype <http://www.opengis.net/ont/geosparql#wktLiteral> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione della georeferenziazione con la sua serializzazione è obbligatoria: clv:serialization deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path clv:coordinateSystem ;     
+		sh:nodeKind sh:Literal ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione della georeferenziazione con il suo sistema di riferimento è obbligatoria: clv:coordinateSystem deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path a-loc:hasGeometryTechnique ;     
+		sh:class a-loc:GeometryTechnique ;
+		sh:maxCount 1 ;
+		sh:maxCount 1 ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione della georeferenziazione con la sua tecnica di georeferenziazione è obbligatoria: a-loc:hasGeometryTechnique deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path a-loc:hasGeometryMethod ;     
+		sh:class a-loc:GeometryMethod ;
+		sh:maxCount 1 ;
+		sh:maxCount 1 ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione della georeferenziazione con suo metodo di posizionamento è obbligatoria: a-loc:hasGeometryMethod deve essere materializzata"
+		] ;
+	#non abbligatorie
+	sh:property [              
+		sh:path a-loc:hasBaseMap ;     
+		sh:class a-loc:BaseMap ;
+		] .

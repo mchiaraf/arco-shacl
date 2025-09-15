@@ -1,0 +1,46 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+ex:AccessProfile
+    a sh:NodeShape ;
+    sh:targetClass a-cat:AccessProfile ;
+	sh:property [              
+		sh:path a-cat:hasPrivacyLevel ;     
+		# sh:class a-cat:PrivacyLevel ; # commentato perchè la classe degli individui è istanziata nell'onto e non nell'output rdf
+		# eventualmente si possono fare restrizioni sugli individui dell'ontologia, da valutare se resteranno quelli gli uri o sarà un voc
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:severity sh:Violation ;
+        sh:message "La relazione del profilo d'accesso ai dati con il livello di privacy (cosiddetto 'Profilo di pubblicazione': 1, 2, 3) è obbligatoria: a-cat:hasPrivacyLevel deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path a-cat:hasPrivacyReason ;     
+		sh:class a-cat:PrivacyReason ;
+		# relazione opzionale
+		] ;
+	sh:property [              
+		sh:path a-cd:expiryDate ;     
+		sh:nodeKind sh:Literal ;
+		# relazione opzionale
+		] .

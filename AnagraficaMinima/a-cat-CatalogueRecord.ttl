@@ -1,0 +1,131 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+ex:CatalogueRecordShape
+    a sh:NodeShape ;
+	sh:or (
+            [ sh:targetClass a-cat:CatalogueRecord ]
+            [ sh:targetClass a-cat:CatalogueRecordA ]
+            [ sh:targetClass a-cat:CatalogueRecordAR ]
+            [ sh:targetClass a-cat:CatalogueRecordAT ]
+			#[ sh:targetClass a-cat:CatalogueRecordAUT ]
+            [ sh:targetClass a-cat:CatalogueRecordBDI ]
+            [ sh:targetClass a-cat:CatalogueRecordBDM ]
+			#[ sh:targetClass a-cat:CatalogueRecordBIB ]
+            [ sh:targetClass a-cat:CatalogueRecordBNB ]
+            [ sh:targetClass a-cat:CatalogueRecordBNM ]
+            [ sh:targetClass a-cat:CatalogueRecordBNP ]
+            [ sh:targetClass a-cat:CatalogueRecordBNPE ]
+            [ sh:targetClass a-cat:CatalogueRecordBNPL ]
+            [ sh:targetClass a-cat:CatalogueRecordBNZ ]
+            [ sh:targetClass a-cat:CatalogueRecordCA ]
+            #[ sh:targetClass a-cat:CatalogueRecordCF ]
+            #[ sh:targetClass a-cat:CatalogueRecordCG ]
+            [ sh:targetClass a-cat:CatalogueRecordCNS ]
+            [ sh:targetClass a-cat:CatalogueRecordD ]
+			#[ sh:targetClass a-cat:CatalogueRecordDSC ]
+            [ sh:targetClass a-cat:CatalogueRecordE ]
+            [ sh:targetClass a-cat:CatalogueRecordF ]
+            [ sh:targetClass a-cat:CatalogueRecordFF ]
+            [ sh:targetClass a-cat:CatalogueRecordMA ]
+            [ sh:targetClass a-cat:CatalogueRecordMI ]
+            [ sh:targetClass a-cat:CatalogueRecordMINP ]
+            [ sh:targetClass a-cat:CatalogueRecordMINV ]
+            [ sh:targetClass a-cat:CatalogueRecordMODI ]
+            [ sh:targetClass a-cat:CatalogueRecordNU ]
+            [ sh:targetClass a-cat:CatalogueRecordOA ]
+            [ sh:targetClass a-cat:CatalogueRecordOAC ]
+            [ sh:targetClass a-cat:CatalogueRecordPG ]
+            [ sh:targetClass a-cat:CatalogueRecordPST ]
+            [ sh:targetClass a-cat:CatalogueRecordRA ]
+			#[ sh:targetClass a-cat:CatalogueRecordRCG ]
+            [ sh:targetClass a-cat:CatalogueRecordS ]
+            [ sh:targetClass a-cat:CatalogueRecordSAS ]
+            [ sh:targetClass a-cat:CatalogueRecordSCAN ]
+            [ sh:targetClass a-cat:CatalogueRecordSI ]
+            [ sh:targetClass a-cat:CatalogueRecordSM ]
+            [ sh:targetClass a-cat:CatalogueRecordSMO ]
+            [ sh:targetClass a-cat:CatalogueRecordTMA ]
+            [ sh:targetClass a-cat:CatalogueRecordVeAC ]
+            [ sh:targetClass a-cat:ComplexCPCatalogueRecord ]
+        ) ;
+		#OK
+		sh:property [
+			sh:path a-cat:hasAccessProfile ;     
+			sh:class a-cat:AccessProfile ;
+			sh:minCount 1 ;
+			sh:maxCount 1 ;
+			sh:severity sh:Violation ;
+        	sh:message "La relazione della scheda catalografica con il profilo d'accesso è obbligatoria"
+			] ;
+		#OK
+		sh:property [    
+			sh:path a-cat:hasCataloguingLevel ;     
+			sh:class a-cat:CataloguingLevel ;
+			sh:minCount 1 ;
+			sh:maxCount 1 ;
+			sh:severity sh:Violation ;
+        	sh:message "La relazione della scheda catalografica con il livello catalografico è obbligatoria"
+			] ;
+		#OK
+		sh:property [              
+			sh:path a-cat:hasRecordVersion ;     
+			sh:class a-cat:CatalogueRecordVersion ;
+			sh:minCount 1 ;
+			sh:severity sh:Violation ;
+			sh:message "La relazione della scheda catalografica con la sua versione è obbligatoria: la tipologia di versione è obbligatoria almeno per la compilazione (a-cat:Compiling)"
+			] ;
+		#OK
+		sh:property [              
+			sh:path a-lite:hasResponsibleAgent ;     
+			sh:class cov:Organization ;
+			sh:minCount 1 ;
+			sh:maxCount 1 ;
+			sh:severity sh:Violation ;
+        	sh:message "La relazione della scheda catalografica con l'ente schedatore è obbligatoria"
+			];
+		#OK
+		sh:or (
+		[
+			sh:path core:hasIdentifier ;     
+			sh:class core:Identifier ;
+			sh:minCount 1 ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione della scheda catalografica con un identificativo è obbligatoria, in mancanza del pattern deve essere presente almeno la proiezione del modulo arco-lite 'nationalIdentifier', 'localIdentifier'"
+		]
+		[
+			sh:path a-lite:nationalIdentifier ;
+			sh:nodeKind sh:Literal ;
+			sh:minCount 1 ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione della scheda catalografica con un identificativo è obbligatoria, in mancanza del pattern deve essere presente almeno la proiezione del modulo arco-lite 'nationalIdentifier', 'localIdentifier'"
+		]
+		[
+			sh:path a-lite:localIdentifier ;
+			sh:nodeKind sh:Literal ;
+			sh:minCount 1 ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione della scheda catalografica con un identificativo è obbligatoria, in mancanza del pattern deve essere presente almeno la proiezione del modulo arco-lite 'nationalIdentifier', 'localIdentifier'"
+		]
+		) .

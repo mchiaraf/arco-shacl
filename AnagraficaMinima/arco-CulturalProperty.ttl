@@ -1,0 +1,357 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+ex:CulturalPropertyShape
+    a sh:NodeShape ;
+    sh:targetClass arco:CulturalProperty ,
+        arco:ComplexCulturalProperty ,
+        arco:DemoEthnoAnthropologicalHeritage ,
+        arco:IntangibleCulturalProperty ,
+        arco:TangibleCulturalProperty ,
+        arco:ArchaeologicalProperty ,
+        arco:ArchaeologicalMaterial ,
+        arco:ImmovableCulturalProperty ,
+        arco:ArchitecturalOrLandscapeHeritage ,
+        arco:MovableCulturalProperty ,
+        arco:HistoricOrArtisticProperty ,
+        arco:MusicHeritage ,
+        arco:NaturalHeritage ,
+        arco:NumismaticProperty ,
+        arco:PhotographicHeritage ,
+        arco:ScientificOrTechnologicalHeritage ;
+    #OK
+    sh:property [              
+        sh:or (
+            [ sh:path rdf:type ; 
+              sh:minCount 1 ;
+              sh:hasValue arco:ImmovableCulturalProperty ]
+            [ sh:path rdf:type ; 
+              sh:minCount 1 ;
+              sh:hasValue arco:MovableCulturalProperty ]
+            [ sh:path rdf:type ; 
+              sh:minCount 1 ;
+              sh:hasValue arco:IntangibleCulturalProperty ]
+        ) ;
+        sh:severity sh:Violation ;
+        sh:message "Ogni arco:CulturalProperty deve essere classificato come arco:ImmovableCulturalProperty, arco:MovableCulturalProperty o arco:IntangibleCulturalProperty"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path a-lite:hasCataloguingAgency ;     
+        sh:class cov:Organization ; #valutare se allentare la shape a l0:Agent
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con l'ente schedatore è obbligatoria: a-lite:hasCataloguingAgency deve essere materializzata"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path a-lite:hasHeritageProtectionAgency ;     
+        sh:class cov:Organization ; #valutare se allentare la shape a l0:Agent
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con l'ente competente per la tutela è obbligatoria: a-lite:hasHeritageProtectionAgency deve essere materializzata"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path core:isDescribedBy ;     
+        sh:or (
+            [ sh:class a-cat:CatalogueRecord ]
+            [ sh:class a-cat:CatalogueRecordA ]
+            [ sh:class a-cat:CatalogueRecordAR ]
+            [ sh:class a-cat:CatalogueRecordA ]
+            [ sh:class a-cat:CatalogueRecordAT ]
+            [ sh:class a-cat:CatalogueRecordBDI ]
+            [ sh:class a-cat:CatalogueRecordBDM ]
+            [ sh:class a-cat:CatalogueRecordBNB ]
+            [ sh:class a-cat:CatalogueRecordBNM ]
+            [ sh:class a-cat:CatalogueRecordBNP ]
+            [ sh:class a-cat:CatalogueRecordBNPE ]
+            [ sh:class a-cat:CatalogueRecordBNPL ]
+            [ sh:class a-cat:CatalogueRecordBNZ ]
+            [ sh:class a-cat:CatalogueRecordCA ]
+            [ sh:class a-cat:CatalogueRecordCF ]
+            [ sh:class a-cat:CatalogueRecordCG ]
+            [ sh:class a-cat:CatalogueRecordCNS ]
+            [ sh:class a-cat:CatalogueRecordD ]
+            [ sh:class a-cat:CatalogueRecordE ]
+            [ sh:class a-cat:CatalogueRecordF ]
+            [ sh:class a-cat:CatalogueRecordFF ]
+            [ sh:class a-cat:CatalogueRecordMA ]
+            [ sh:class a-cat:CatalogueRecordMI ]
+            [ sh:class a-cat:CatalogueRecordMINP ]
+            [ sh:class a-cat:CatalogueRecordMINV ]
+            [ sh:class a-cat:CatalogueRecordMODI ]
+            [ sh:class a-cat:CatalogueRecordNU ]
+            [ sh:class a-cat:CatalogueRecordOA ]
+            [ sh:class a-cat:CatalogueRecordOAC ]
+            [ sh:class a-cat:CatalogueRecordPG ]
+            [ sh:class a-cat:CatalogueRecordPST ]
+            [ sh:class a-cat:CatalogueRecordRA ]
+            [ sh:class a-cat:CatalogueRecordS ]
+            [ sh:class a-cat:CatalogueRecordSAS ]
+            [ sh:class a-cat:CatalogueRecordSCAN ]
+            [ sh:class a-cat:CatalogueRecordSI ]
+            [ sh:class a-cat:CatalogueRecordSM ]
+            [ sh:class a-cat:CatalogueRecordSMO ]
+            [ sh:class a-cat:CatalogueRecordTMA ]
+            [ sh:class a-cat:CatalogueRecordVeAC ]
+            [ sh:class a-cat:ComplexCPCatalogueRecord ]
+        ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la scheda di catalogo è obbligatoria: manca la relazione con il CaraogueRecord"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path a-dd:hasCulturalPropertyType ;     
+        sh:class a-dd:CulturalPropertyType ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la sua tipologia di oggetto (a-dd:CulturalPropertyType) è obbligatoria"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path a-lite:currentDesignation ; # oppure solo label? 
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la sua designazione corrente è obbligatoria"
+    ] ;
+    # manca OGI - attualmente non presente in ArCo
+    #OK
+    sh:property [              
+        sh:path a-loc:hasTimeIndexedTypedLocation ;     
+        sh:class a-loc:TimeIndexedTypedLocation ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la sua localizzazione corrente è obbligatoria"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path clv:hasGeometry ;     
+        sh:class a-loc:Geometry ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la sua georeferenziazione corrente è obbligatoria"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path a-lite:hasCulturalPropertyAddress ;     
+        sh:class clv:Address ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con il suo indirizzo è obbligatoria"
+        # da valutare per CLIO: se anche per i mobili o solo gli immobili
+    ] ;
+    #OK
+    sh:property [              
+        sh:path a-cd:hasDating ;     
+        sh:class a-cd:Dating ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la sua cronologia è obbligatoria"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path core:description ; # oppure solo label? 
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la sua descrizione è obbligatoria"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path a-cd:hasLegalSituation ;     
+        sh:class a-cd:LegalSituation ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la sua condizione giuridica è obbligatoria"
+    ] ;
+    #OK
+    sh:property [
+        sh:or (
+            [
+                sh:path a-cd:hasDocumentation ;     
+                # sh:class a-cd:Documentation ;
+                sh:minCount 1 ;
+            ]
+            [
+                sh:path a-cd:hasAttachedDocumentation ;
+                # sh:class a-cd:Documentation ;
+                sh:minCount 1 ;
+            ]
+        ) ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la sua documentazione è obbligatoria: in mancanza della relazione generica (a-cd:hasDocumentation) deve essere presente la specializzazione a-cd:hasAttachedDocumentation"
+    ];
+    ### NON OBBLIGATORI - SHAPES NON ANAGRAFICA MINIMA
+    sh:property [              
+        sh:path arco:hasCulturalPropertyComponent ;  #rivedi è inversa   
+        sh:class cis:CulturalEntity ;
+    ] ;
+    sh:property [              
+        sh:path arco:numberOfComponents ;     
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [              
+        sh:path arco:hasCulturalPropertyResidual ;     
+        sh:class cis:CulturalEntity ;
+    ] ;
+   sh:property [              
+        sh:path a-cd:hasAcquisition ;     
+        sh:class a-cd:Acquisition ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasBibliographicSource ;     
+        sh:class a-cd:Edition ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasChangeOfAvailability ;     
+        sh:class a-cd:ChangeOfAvailability ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasCommission ;     
+        sh:class a-cd:Commission ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasCopyright ;     
+        sh:class a-cd:Copyright ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasDating ;     
+        sh:class a-cd:Dating ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasDesignationInTime ;     
+        sh:class a-cd:DesignationInTime ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasDetectionMethod ;     
+        sh:class a-cd:DetectionMethod ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasExportImportCertification ;     
+        sh:class a-cd:ExportImportCertification ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasIntervention ;     
+        sh:class a-cd:Intervention ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasInventorySituation ;     
+        sh:class a-cd:InventorySituation ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasProtectiveMeasure ;     
+        sh:class a-cd:ProtectiveMeasure ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasRelatedWorkSituation ;     
+        sh:class a-cd:RelatedWorkSituation ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasResearch ;     
+        sh:class a-cd:Research ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasResponsibility ;     
+        sh:class a-cd:Responsibility ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasSubject ;     
+        sh:class a-cd:Subject ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasSurvey ;     
+        sh:class a-cd:Survey ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasTitle ;     
+        sh:class a-cd:Title ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasUrbanPlanningInstrument ;     
+        sh:class a-cd:UrbanPlanningInstrument ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasUse ;     
+        sh:class a-cd:Use ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:historicalInformation ;     
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:informationGatheredOnSite ;     
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [              
+        sh:path a-dd:hasAffixedElement ;     
+        sh:class a-dd:AffixedElement ;
+    ] ;
+    sh:property [              
+        sh:path a-dd:hasConservationStatus ;     
+        sh:class a-dd:ConservationStatus ;
+    ] ;
+    sh:property [              
+        sh:path a-dd:hasCulturalPropertyAccessibility ;     
+        sh:class a-dd:CulturalPropertyAccessibility ;
+    ] ;
+    sh:property [              
+        sh:path a-dd:hasCulturalPropertyAvailability ;     
+        sh:class a-dd:CulturalPropertyAvailability ;
+    ] ;
+    sh:property [              
+        sh:path a-dd:hasIconographicOrDecorativeApparatus ;     
+        sh:or ( 
+            [ sh:class a-dd:IconographicOrDecorativeApparatus ]
+            [ sh:class a-dd:DecorativeApparatus ]
+            [ sh:class a-dd:IconographicApparatus ]
+        );
+    ] ;
+    sh:property [              
+        sh:path a-dd:hasLocationSubject ;     
+        sh:class a-loc:TimeIndexedTypedLocation ;
+    ] ;
+    sh:property [              
+        sh:path a-dd:hasOrientation ;     
+        sh:class a-dd:Orientation ;
+    ] ;
+    sh:property [              
+        sh:path a-dd:hasTechnicalStatus ;     
+        sh:class a-dd:TechnicalStatus ;
+    ] ;
+    sh:property [              
+        sh:path a-dd:storageConditions ;     
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [              
+        sh:path a-loc:hasCadastralIdentity ;     
+        sh:class a-loc:CadastralIdentity ;
+    ] ;
+    sh:property [              
+        sh:path a-loc:hasTypeOfContext ;     
+        sh:class a-loc:TypeOfContext ;
+    ] ;
+    sh:property [              
+        sh:path core:hasCategory ;     
+        sh:class arco:CulturalPropertyCategory ;
+    ] .

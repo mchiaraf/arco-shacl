@@ -22,7 +22,7 @@
 
 ex:TimeIndexedTypedLocationShape
     a sh:NodeShape ;
-    sh:targetClass a-loc:TimeIndexedTypedLocationShape ;
+    sh:targetClass a-loc:TimeIndexedTypedLocation ;
 	#OK
 	sh:property [     
 		sh:path a-loc:hasLocationType ;     

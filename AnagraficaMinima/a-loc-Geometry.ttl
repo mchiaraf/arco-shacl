@@ -26,7 +26,7 @@ ex:GeometryShape
     sh:targetClass a-loc:Geometry ;
 	sh:property [              
 		sh:path clv:hasGeometryType ;     
-		sh:class clv:GeometryType ;
+		sh:nodeKind sh:IRI ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:severity sh:Violation ;

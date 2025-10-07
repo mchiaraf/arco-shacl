@@ -42,6 +42,7 @@ ex:CatalogueRecordVersionShape
 	            sh:path core:hasType ;
                 sh:hasValue a-cat:Compiling ;
             ] ;
+            # da capire: forse non per IPAC
             sh:property [
                 sh:path a-lite:hasOfficialInCharge ;
                 sh:class l0:Agent ;

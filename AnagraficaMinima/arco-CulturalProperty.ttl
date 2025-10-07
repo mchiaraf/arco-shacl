@@ -127,13 +127,21 @@ ex:CulturalPropertyShape
         sh:severity sh:Violation ;
         sh:message "La relazione del bene culturale con la sua tipologia di oggetto (a-dd:CulturalPropertyType) è obbligatoria"
     ] ;
-    #OK
+    #OK -- da capire con ICCD
     sh:property [              
         sh:path a-lite:currentDesignation ; # oppure solo label? 
         sh:nodeKind sh:Literal ;
-        sh:minCount 1 ;
+        # sh:minCount 1 ;
         sh:severity sh:Violation ;
         sh:message "La relazione del bene culturale con la sua designazione corrente è obbligatoria"
+    ] ;
+    #OK
+    sh:property [              
+        sh:path rdfs:label ; # oppure solo label? 
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "La relazione del bene culturale con la sua etichetta testuale è obbligatoria"
     ] ;
     # manca OGI - attualmente non presente in ArCo
     #OK
@@ -202,6 +210,29 @@ ex:CulturalPropertyShape
         sh:severity sh:Violation ;
         sh:message "La relazione del bene culturale con la sua documentazione è obbligatoria: in mancanza della relazione generica (a-cd:hasDocumentation) deve essere presente la specializzazione a-cd:hasAttachedDocumentation"
     ];
+    sh:or (
+		[
+			sh:path core:hasIdentifier ;     
+			sh:class core:Identifier ;
+			sh:minCount 1 ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione della scheda catalografica con un identificativo è obbligatoria, in mancanza del pattern deve essere presente almeno la proiezione del modulo arco-lite 'nationalIdentifier', 'localIdentifier'"
+		]
+		[
+			sh:path a-lite:nationalIdentifier ;
+			sh:nodeKind sh:Literal ;
+			sh:minCount 1 ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione della scheda catalografica con un identificativo è obbligatoria, in mancanza del pattern deve essere presente almeno la proiezione del modulo arco-lite 'nationalIdentifier', 'localIdentifier'"
+		]
+		[
+			sh:path a-lite:localIdentifier ;
+			sh:nodeKind sh:Literal ;
+			sh:minCount 1 ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione della scheda catalografica con un identificativo è obbligatoria, in mancanza del pattern deve essere presente almeno la proiezione del modulo arco-lite 'nationalIdentifier', 'localIdentifier'"
+		]
+	);
     ### NON OBBLIGATORI - SHAPES NON ANAGRAFICA MINIMA
     sh:property [              
         sh:path arco:hasCulturalPropertyComponent ;  #rivedi è inversa   

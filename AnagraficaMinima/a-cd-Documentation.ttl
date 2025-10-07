@@ -24,7 +24,12 @@
 
 ex:DocumentationShape
     a sh:NodeShape ;
-    sh:targetClass a-cd:Documentation ;
+    sh:targetClass a-cd:Documentation ,
+		a-cd:PhotographicDocumentation ,
+		a-cd:GraphicOrCartographicDocumentation ,
+		a-cd:AudioDocumentation ,
+		a-cd:FilmDocumentation ,
+		a-cd:SourceOrDocument ;
 	sh:property [              
 		sh:path a-cd:documentationTitle ;     
 		sh:datatype rdfs:Literal ;

@@ -235,9 +235,230 @@ ex:CulturalPropertyShape
 	);
     ### NON OBBLIGATORI - SHAPES NON ANAGRAFICA MINIMA
     sh:property [              
-        sh:path arco:hasCulturalPropertyComponent ;  #rivedi è inversa   
-        sh:class cis:CulturalEntity ;
+        sh:path arco:isCulturalPropertyComponentOf ; 
+        sh:or (
+            [ sh:class arco:CulturalProperty ]
+            [ sh:class arco:ComplexCulturalProperty ]
+            [ sh:class arco:DemoEthnoAnthropologicalHeritage ]
+            [ sh:class arco:IntangibleCulturalProperty ]
+            [ sh:class arco:TangibleCulturalProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:ArchaeologicalMaterial ]
+            [ sh:class arco:ImmovableCulturalProperty ]
+            [ sh:class arco:ArchitecturalOrLandscapeHeritage ]
+            [ sh:class arco:MovableCulturalProperty ]
+            [ sh:class arco:HistoricOrArtisticProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:MusicHeritage ]
+            [ sh:class arco:NaturalHeritage ]
+            [ sh:class arco:NumismaticProperty ]
+            [ sh:class arco:PhotographicHeritage ]
+            [ sh:class arco:ScientificOrTechnologicalHeritage ]
+            [ sh:class cis:CulturalEntity ]
+        ) ;
     ] ;
+    sh:or (
+		[
+			sh:path a-lite:isLocatedIn ;     
+			sh:or (
+            [ sh:class arco:CulturalProperty ]
+            [ sh:class arco:ComplexCulturalProperty ]
+            [ sh:class arco:DemoEthnoAnthropologicalHeritage ]
+            [ sh:class arco:IntangibleCulturalProperty ]
+            [ sh:class arco:TangibleCulturalProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:ArchaeologicalMaterial ]
+            [ sh:class arco:ImmovableCulturalProperty ]
+            [ sh:class arco:ArchitecturalOrLandscapeHeritage ]
+            [ sh:class arco:MovableCulturalProperty ]
+            [ sh:class arco:HistoricOrArtisticProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:MusicHeritage ]
+            [ sh:class arco:NaturalHeritage ]
+            [ sh:class arco:NumismaticProperty ]
+            [ sh:class arco:PhotographicHeritage ]
+            [ sh:class arco:ScientificOrTechnologicalHeritage ]
+            [ sh:class cis:CulturalEntity ]
+            ) ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione a-lite:isLocatedIn deve collegare necessariamente due entità culturali"
+		]
+        [
+			sh:path a-lite:hasPreviousLocation ;     
+			sh:or (
+            [ sh:class arco:CulturalProperty ]
+            [ sh:class arco:ComplexCulturalProperty ]
+            [ sh:class arco:DemoEthnoAnthropologicalHeritage ]
+            [ sh:class arco:IntangibleCulturalProperty ]
+            [ sh:class arco:TangibleCulturalProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:ArchaeologicalMaterial ]
+            [ sh:class arco:ImmovableCulturalProperty ]
+            [ sh:class arco:ArchitecturalOrLandscapeHeritage ]
+            [ sh:class arco:MovableCulturalProperty ]
+            [ sh:class arco:HistoricOrArtisticProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:MusicHeritage ]
+            [ sh:class arco:NaturalHeritage ]
+            [ sh:class arco:NumismaticProperty ]
+            [ sh:class arco:PhotographicHeritage ]
+            [ sh:class arco:ScientificOrTechnologicalHeritage ]
+            [ sh:class cis:CulturalEntity ]
+            ) ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione a-lite:hasPreviousLocation deve collegare necessariamente due entità culturali"
+		]
+		[
+			sh:path a-lite:isInvolvedIn ;     
+			sh:or (
+            [ sh:class arco:CulturalProperty ]
+            [ sh:class arco:ComplexCulturalProperty ]
+            [ sh:class arco:DemoEthnoAnthropologicalHeritage ]
+            [ sh:class arco:IntangibleCulturalProperty ]
+            [ sh:class arco:TangibleCulturalProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:ArchaeologicalMaterial ]
+            [ sh:class arco:ImmovableCulturalProperty ]
+            [ sh:class arco:ArchitecturalOrLandscapeHeritage ]
+            [ sh:class arco:MovableCulturalProperty ]
+            [ sh:class arco:HistoricOrArtisticProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:MusicHeritage ]
+            [ sh:class arco:NaturalHeritage ]
+            [ sh:class arco:NumismaticProperty ]
+            [ sh:class arco:PhotographicHeritage ]
+            [ sh:class arco:ScientificOrTechnologicalHeritage ]
+            [ sh:class cis:CulturalEntity ]
+            ) ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione a-lite:isInvolvedIn deve collegare necessariamente due entità culturali"
+		]
+        [
+			sh:path a-lite:hasCreationLocation ;     
+			sh:or (
+            [ sh:class arco:CulturalProperty ]
+            [ sh:class arco:ComplexCulturalProperty ]
+            [ sh:class arco:DemoEthnoAnthropologicalHeritage ]
+            [ sh:class arco:IntangibleCulturalProperty ]
+            [ sh:class arco:TangibleCulturalProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:ArchaeologicalMaterial ]
+            [ sh:class arco:ImmovableCulturalProperty ]
+            [ sh:class arco:ArchitecturalOrLandscapeHeritage ]
+            [ sh:class arco:MovableCulturalProperty ]
+            [ sh:class arco:HistoricOrArtisticProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:MusicHeritage ]
+            [ sh:class arco:NaturalHeritage ]
+            [ sh:class arco:NumismaticProperty ]
+            [ sh:class arco:PhotographicHeritage ]
+            [ sh:class arco:ScientificOrTechnologicalHeritage ]
+            [ sh:class cis:CulturalEntity ]
+            ) ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione a-lite:hasCreationLocation deve collegare necessariamente due entità culturali"
+		]
+        [
+			sh:path a-lite:isReusedBy ;     
+			sh:or (
+            [ sh:class arco:CulturalProperty ]
+            [ sh:class arco:ComplexCulturalProperty ]
+            [ sh:class arco:DemoEthnoAnthropologicalHeritage ]
+            [ sh:class arco:IntangibleCulturalProperty ]
+            [ sh:class arco:TangibleCulturalProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:ArchaeologicalMaterial ]
+            [ sh:class arco:ImmovableCulturalProperty ]
+            [ sh:class arco:ArchitecturalOrLandscapeHeritage ]
+            [ sh:class arco:MovableCulturalProperty ]
+            [ sh:class arco:HistoricOrArtisticProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:MusicHeritage ]
+            [ sh:class arco:NaturalHeritage ]
+            [ sh:class arco:NumismaticProperty ]
+            [ sh:class arco:PhotographicHeritage ]
+            [ sh:class arco:ScientificOrTechnologicalHeritage ]
+            [ sh:class cis:CulturalEntity ]
+            ) ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione a-lite:isReusedBy deve collegare necessariamente due entità culturali"
+		]
+        [
+			sh:path a-lite:isSubjectOf ;     
+			sh:or (
+            [ sh:class arco:CulturalProperty ]
+            [ sh:class arco:ComplexCulturalProperty ]
+            [ sh:class arco:DemoEthnoAnthropologicalHeritage ]
+            [ sh:class arco:IntangibleCulturalProperty ]
+            [ sh:class arco:TangibleCulturalProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:ArchaeologicalMaterial ]
+            [ sh:class arco:ImmovableCulturalProperty ]
+            [ sh:class arco:ArchitecturalOrLandscapeHeritage ]
+            [ sh:class arco:MovableCulturalProperty ]
+            [ sh:class arco:HistoricOrArtisticProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:MusicHeritage ]
+            [ sh:class arco:NaturalHeritage ]
+            [ sh:class arco:NumismaticProperty ]
+            [ sh:class arco:PhotographicHeritage ]
+            [ sh:class arco:ScientificOrTechnologicalHeritage ]
+            [ sh:class cis:CulturalEntity ]
+            ) ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione a-lite:isSubjectOf deve collegare necessariamente due entità culturali"
+		]
+        [
+			sh:path a-lite:hasUrbanPlanningEnvironmentalRelationWith ;     
+			sh:or (
+            [ sh:class arco:CulturalProperty ]
+            [ sh:class arco:ComplexCulturalProperty ]
+            [ sh:class arco:DemoEthnoAnthropologicalHeritage ]
+            [ sh:class arco:IntangibleCulturalProperty ]
+            [ sh:class arco:TangibleCulturalProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:ArchaeologicalMaterial ]
+            [ sh:class arco:ImmovableCulturalProperty ]
+            [ sh:class arco:ArchitecturalOrLandscapeHeritage ]
+            [ sh:class arco:MovableCulturalProperty ]
+            [ sh:class arco:HistoricOrArtisticProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:MusicHeritage ]
+            [ sh:class arco:NaturalHeritage ]
+            [ sh:class arco:NumismaticProperty ]
+            [ sh:class arco:PhotographicHeritage ]
+            [ sh:class arco:ScientificOrTechnologicalHeritage ]
+            [ sh:class cis:CulturalEntity ]
+            ) ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione a-lite:hasUrbanPlanningEnvironmentalRelationWith deve collegare necessariamente due entità culturali"
+		]
+        [
+			sh:path a-lite:hasFindingLocation ;     
+			sh:or (
+            [ sh:class arco:CulturalProperty ]
+            [ sh:class arco:ComplexCulturalProperty ]
+            [ sh:class arco:DemoEthnoAnthropologicalHeritage ]
+            [ sh:class arco:IntangibleCulturalProperty ]
+            [ sh:class arco:TangibleCulturalProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:ArchaeologicalMaterial ]
+            [ sh:class arco:ImmovableCulturalProperty ]
+            [ sh:class arco:ArchitecturalOrLandscapeHeritage ]
+            [ sh:class arco:MovableCulturalProperty ]
+            [ sh:class arco:HistoricOrArtisticProperty ]
+            [ sh:class arco:ArchaeologicalProperty ]
+            [ sh:class arco:MusicHeritage ]
+            [ sh:class arco:NaturalHeritage ]
+            [ sh:class arco:NumismaticProperty ]
+            [ sh:class arco:PhotographicHeritage ]
+            [ sh:class arco:ScientificOrTechnologicalHeritage ]
+            [ sh:class cis:CulturalEntity ]
+            ) ;
+			sh:severity sh:Warning ;
+        	sh:message "La relazione a-lite:hasFindingLocation deve collegare necessariamente due entità culturali"
+		]
+	);
     sh:property [              
         sh:path arco:numberOfComponents ;     
         sh:datatype xsd:string ;
@@ -277,6 +498,10 @@ ex:CulturalPropertyShape
     sh:property [              
         sh:path a-cd:hasDetectionMethod ;     
         sh:class a-cd:DetectionMethod ;
+    ] ;
+    sh:property [              
+        sh:path a-cd:hasEstimate ;     
+        sh:class a-cd:Estimate ;
     ] ;
     sh:property [              
         sh:path a-cd:hasExportImportCertification ;     
@@ -352,7 +577,7 @@ ex:CulturalPropertyShape
     ] ;
     sh:property [              
         sh:path a-dd:hasIconographicOrDecorativeApparatus ;     
-        sh:or ( 
+        sh:or (
             [ sh:class a-dd:IconographicOrDecorativeApparatus ]
             [ sh:class a-dd:DecorativeApparatus ]
             [ sh:class a-dd:IconographicApparatus ]

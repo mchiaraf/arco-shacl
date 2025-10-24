@@ -34,7 +34,11 @@ ex:TechnicalStatusShape
 		] ;
 	sh:property [              
 		sh:path a-cd:hasAgentWithResponsibility ;     
-		sh:class l0:Agent ;
+		sh:or (
+            [ sh:class l0:Agent ]
+            [ sh:class cov:Organization ]
+            [ sh:class cpv:Person ]
+            ) ;
 		sh:severity sh:Violation ;
 		sh:message "La relazione della responsabilità con il suo agente è obbligatoria: a-cd:hasAgentWithResponsibility deve essere materializzata"
 		] ;

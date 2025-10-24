@@ -5,7 +5,7 @@
 @prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
 @prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
 @prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
-@prefix lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
 @prefix a-loc: <https://w3id.org/arco/ontology/location/> .
 @prefix arco: <https://w3id.org/arco/ontology/arco/> .
 @prefix cis: <http://dati.beniculturali.it/cis/> .
@@ -32,20 +32,27 @@ ex:PublicationShape
         sh:message "La relazione della designazione nel tempo con la stringa della designazione è obbligatoria"
     ] ;
 	sh:property [              
+        sh:path a-cd:completeBibliographicReference ; 
+        sh:nodeKind sh:Literal ;
+        #sh:minCount 1 ;
+        #sh:severity sh:Violation ;
+        #sh:message "La relazione della designazione nel tempo con la stringa della designazione è obbligatoria"
+    ] ;
+	sh:property [              
 		sh:path a-lite:hasAuthor ;     
 		sh:or (
             [ sh:class l0:Agent ]
             [ sh:class cov:Organization ]
             [ sh:class cpv:Person ]
             ) ;
-		sh:severity sh:Violation ;
-		sh:message "La relazione della pubblicazione con il suo autore è obbligatoria: a-lite:hasAgent deve essere materializzata"
+		#sh:severity sh:Violation ;
+		#sh:message "La relazione della pubblicazione con il suo autore è obbligatoria: a-lite:hasAgent deve essere materializzata"
 		] ;
 	sh:property [              
 		sh:path a-cd:hasTitle ;     
 		sh:class a-cd:Title;
-		sh:severity sh:Violation ;
-		sh:message "La relazione della pubblicazione con il suo titolo è obbligatoria: a-cd:hasTitle deve essere materializzata"
+		#sh:severity sh:Violation ;
+		#sh:message "La relazione della pubblicazione con il suo titolo è obbligatoria: a-cd:hasTitle deve essere materializzata"
 		] ;
 	#non obbligatoria
 	sh:property [              

@@ -473,7 +473,10 @@ ex:CulturalPropertyShape
     ] ;
     sh:property [              
         sh:path a-cd:hasBibliographicSource ;     
-        sh:class a-cd:Edition ;
+        sh:or (
+            [ sh:class a-cd:Edition ]
+            [ sh:class a-cd:Publication ]
+            ) ;
     ] ;
     sh:property [              
         sh:path a-cd:hasChangeOfAvailability ;     
@@ -537,7 +540,14 @@ ex:CulturalPropertyShape
     ] ;
     sh:property [              
         sh:path a-cd:hasSurvey ;     
-        sh:class a-cd:Survey ;
+        sh:or (
+            [ sh:class a-cd:Survey ]
+            [ sh:class a-cd:AchaeologicalExcavation ]
+            [ sh:class a-cd:AchaeologicalFieldSurvey ]
+            [ sh:class a-cd:xxx ]
+            [ sh:class a-cd:xxx ]
+            [ sh:class a-cd:xxxx ]
+            ) ;
     ] ;
     sh:property [              
         sh:path a-cd:hasTitle ;     

@@ -24,7 +24,8 @@
 
 # Bisognerebbe filtrare l'agente e fare check solo su quelli core:isDescribedBy/rdf:type a-cat:CatalogueRecordAUT
 # Agent che rispetta le obbligatorietà della normativa AUT4.00
-ex:AddressShape
+# !!! con ICCD capire se è okay restringere a questi campi della 4.00, che fanno perdere altre info (come luogo di nascita/morte), va bene? gli altri descrittori non vengono inclusi nello scambio
+ex:AgentShape
     a sh:NodeShape ;
     sh:targetClass l0:Agent ,
 		cov:Organization ,
@@ -43,7 +44,7 @@ ex:AddressShape
 		sh:message "La relazione dell'agente con la stringa corrispondente alla sua denominazione preferita è obbligatoria: a-lite:primaryName deve essere materializzata"
 		] ;
 	sh:property [              
-		sh:path a-cd:agentDate ;     
+		sh:path a-cd:agentDate ;     # forse solo per la persona 
 		sh:nodeKind sh:Literal ;
 		sh:severity sh:Violation ;
 		sh:message "La relazione dell'agente con la stringa corrispondente al suo riferimento cronologico è obbligatoria: a-cd:agentDate deve essere materializzata"

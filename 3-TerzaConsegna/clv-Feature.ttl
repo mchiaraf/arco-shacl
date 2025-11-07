@@ -21,10 +21,12 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ex: <https://w3id.org/arco/shacl/> .
 
+# vediamo se va bene a ICCD 
+
 ex:FeatureShape
     a sh:NodeShape ;
     sh:targetClass clv:Feature ;
-	sh:objectOfRelation a-loc:atLocation ; # vogliamo fare check solo su queste?
+	sh:targetObjectsOf a-loc:atLocation ; # vogliamo fare check solo su queste?
 	sh:property [              
 		sh:path clv:hasAddress ;     
 		sh:class clv:Address ;

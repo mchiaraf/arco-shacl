@@ -47,7 +47,7 @@ ex:CollectionCulEntShape
 		] ;
 	sh:property [              
 		sh:path cis:hasMemberColCulEnt ; # questo per le riflessive: collezioni di collezioni ?
-		sh:nodeKind sh:Literal ;
+		sh:nodeKind sh:IRI ;
 		] ;
 	sh:property [              
 		sh:path ti:atTime ;     

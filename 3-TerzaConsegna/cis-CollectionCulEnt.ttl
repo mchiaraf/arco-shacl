@@ -23,38 +23,30 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ex: <https://w3id.org/arco/shacl/> .
 
-ex:CollectionMembershipShape
+# Capire anche da ICCD quale saranno i descrittori delle collezioni
+
+ex:CollectionCulEntShape
     a sh:NodeShape ;
-    sh:targetClass a-cd:CollectionMembership ;
+    sh:targetClass cis:CollectionCulEnt ; # estenderlo anche alle altre collezioni specifiche??
 	sh:property [              
-		sh:path a-cd:involvesCollection ;     
-		sh:or (
-            [ sh:class a-cd:PrintingPlatesSeries ]
-            [ sh:class cis:CollectionCulEnt ]
-            [ sh:class a-cd:NumismaticSeries ]
-			[ sh:class a-arc:ArchivalResource ]
-            ) ;
-		sh:severity sh:Warning ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:message "La relazione dell'appartenenza a collezione con la sua collezione è obbligatoria: a-cd:involvesCollection deve essere materializzata"
-		] ;
-	sh:property [              
-		sh:path a-cd:involvesMember ;     
+		sh:path a-lite:hasCollectionMember ;     
 		sh:nodeKind sh:IRI ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
 		sh:severity sh:Violation ;
-		sh:message "La relazione dell'appartenenza a collezione con la sua collezione è obbligatoria: a-cd:involvesMember deve essere materializzata"
+		sh:minCount 1 ;
+		sh:message "La relazione della collezione con un suo memebro è obbligatoria: a-lite:hasMember deve essere materializzata"
 		] ;
 	
 	# NON OBBLIGATORIE
 	sh:property [              
-		sh:path a-cd:collectionLeavingReason ;     
-		sh:nodeKind sh:Literal ;
+		sh:path a-lite:hasCollector ;     
+		sh:or (
+            [ sh:class l0:Agent ]
+            [ sh:class cpv:Person ]
+            [ sh:class cov:Organization ]
+            ) ;
 		] ;
 	sh:property [              
-		sh:path l0:positionInSequence ;     
+		sh:path cis:hasMemberColCulEnt ; # questo per le riflessive: collezioni di collezioni ?
 		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              

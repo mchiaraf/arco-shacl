@@ -1,0 +1,82 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+# Bisognerebbe filtrare l'agente e fare check solo su quelli core:isDescribedBy/rdf:type a-cat:CatalogueRecordAUT
+# Agent che rispetta le obbligatorietà della normativa AUT4.00
+ex:AddressShape
+    a sh:NodeShape ;
+    sh:targetClass l0:Agent ,
+		cov:Organization ,
+		cpv:Person ;
+	sh:targetSubjectsOf core:isDescribedBy ;
+	sh:property [              
+		sh:path core:isDescribedBy ;     
+		sh:class a-cat:CatalogueRecordAUT ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione dell'agente con la scheda di catalogo è obbligatoria: core:isDescribedBy deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path a-lite:primaryName ;     
+		sh:nodeKind sh:Literal ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione dell'agente con la stringa corrispondente alla sua denominazione preferita è obbligatoria: a-lite:primaryName deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path a-cd:agentDate ;     
+		sh:nodeKind sh:Literal ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione dell'agente con la stringa corrispondente al suo riferimento cronologico è obbligatoria: a-cd:agentDate deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path a-lite:localIdentifier ;     
+		sh:nodeKind sh:Literal ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione dell'agente con la stringa corrispondente al suo identificativo è obbligatoria: a-lite:localIdentifier deve essere materializzata"
+		] ;
+
+	# NON OBBLIGATORIE
+	sh:property [              
+		sh:path a-lite:sexInformation ;     
+		sh:nodeKind sh:Literal 
+		] ;
+	sh:property [              
+		sh:path a-cd:hasProfession ;     
+		sh:class a-cd:Profession 
+		] ;
+	sh:property [              
+		sh:path a-cd:nationality ;     
+		sh:nodeKind sh:Literal
+		] ;
+	sh:property [              
+		sh:path a-cd:hasCulturalScope ;     
+		sh:class a-cd:CulturalScope 
+		] ;
+	sh:property [              
+		sh:path a-lite:alternativeName ;     
+		sh:nodeKind sh:Literal
+		] ;
+	sh:property [              
+		sh:path a-cd:historicalBiographicalInformation ;     
+		sh:nodeKind sh:Literal 
+		] .

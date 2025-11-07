@@ -1,0 +1,67 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-spe: <https://w3id.org/arco/ontology/natural-specimen-description/> .
+@prefix a-arc: <https://w3id.org/arco/archives/ontology/archival-resource/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+ex:CollectionMembershipShape
+    a sh:NodeShape ;
+    sh:targetClass a-cd:CollectionMembership ;
+	sh:property [              
+		sh:path a-cd:involvesCollection ;     
+		sh:or (
+            [ sh:class a-cd:PrintingPlatesSeries ]
+            [ sh:class cis:CollectionCulEnt ]
+            [ sh:class a-cd:NumismaticSeries ]
+			[ sh:class a-arc:ArchivalResource ]
+			[ sh:class a-cd:AudioCollection ]
+			[ sh:class a-cd:VideoCollection ]
+			[ sh:class a-spe:SpecimenCollection ]
+            ) ;
+		sh:severity sh:Warning ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:message "La relazione dell'appartenenza a collezione con la sua collezione è obbligatoria: a-cd:involvesCollection deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path a-cd:involvesMember ;     
+		sh:nodeKind sh:IRI ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione dell'appartenenza a collezione con la sua collezione è obbligatoria: a-cd:involvesMember deve essere materializzata"
+		] ;
+	
+	# NON OBBLIGATORIE
+	sh:property [              
+		sh:path a-cd:collectionLeavingReason ;     
+		sh:nodeKind sh:Literal ;
+		] ;
+	sh:property [              
+		sh:path l0:positionInSequence ;     
+		sh:nodeKind sh:Literal ;
+		] ;
+	sh:property [              
+		sh:path ti:atTime ;     
+		sh:class ti:TimeInterval ;
+		] .

@@ -5,7 +5,7 @@
 @prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
 @prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
 @prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
-@prefix lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
 @prefix a-loc: <https://w3id.org/arco/ontology/location/> .
 @prefix arco: <https://w3id.org/arco/ontology/arco/> .
 @prefix cis: <http://dati.beniculturali.it/cis/> .
@@ -21,36 +21,18 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ex: <https://w3id.org/arco/shacl/> .
 
-ex:AddressShape
+ex:FeatureShape
     a sh:NodeShape ;
-    sh:targetClass clv:Address ;
+    sh:targetClass clv:Feature ;
+	sh:objectOfRelation a-loc:atLocation ; # vogliamo fare check solo su queste?
 	sh:property [              
-		sh:path clv:fullAddress ;     
-		sh:nodeKind sh:Literal ;
+		sh:path clv:hasAddress ;     
+		sh:class clv:Address ;
 		sh:severity sh:Violation ;
-		sh:message "La relazione dell'indirizzo con la stringa corrispondente all'indirizzo completo è obbligatoria: clv:fullAddress deve essere materializzata"
+		sh:message "La relazione del luogo con il suo indirizzo è obbligatoria: clv:hasAddress deve essere materializzata"
 		] ;
+	# NON OBBLIGATORIE 
 	sh:property [              
-		sh:path clv:hasCountry ;     
-		sh:class clv:Country ;
-		sh:severity sh:Violation ;
-		sh:message "La relazione dell'indirizzo con il Paese è obbligatoria: clv:hasCountry deve essere materializzata"
-		] ;
-	sh:property [              
-		sh:path clv:hasRegion ;     
-		sh:class clv:Region ;
-		sh:severity sh:Violation ;
-		sh:message "La relazione dell'indirizzo con la regione è obbligatoria: clv:hasRegion deve essere materializzata"
-		] ;
-	sh:property [              
-		sh:path clv:hasProvince ;     
-		sh:class clv:Province ;
-		sh:severity sh:Violation ;
-		sh:message "La relazione dell'indirizzo con il provincia è obbligatoria: clv:hasProvince deve essere materializzata"
-		] ;
-	sh:property [              
-		sh:path clv:hasCity ;     
-		sh:class clv:City ;
-		sh:severity sh:Violation ;
-		sh:message "La relazione dell'indirizzo con la città è obbligatoria: clv:hasCity deve essere materializzata"
+		sh:path a-loc:hasToponymInTime ;     
+		sh:class a-loc:ToponymInTime ;
 		] .

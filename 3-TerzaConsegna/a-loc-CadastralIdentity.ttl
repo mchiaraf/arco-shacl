@@ -24,31 +24,51 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ex: <https://w3id.org/arco/shacl/> .
 
-ex:UseShape
+ex:CadastralIdentityShape
     a sh:NodeShape ;
-    sh:targetClass a-cd:Use ;
+    sh:targetClass a-cd:CadastralIdentity ;
 	sh:property [              
-		sh:path a-cd:hasUseFunction ;     
-		sh:class a-cd:UseFunction ;
-		sh:severity sh:Warning ;
-		sh:minCount 1 ; 
-		sh:message "La relazione dell'uso con la sua funzione d'uso è obbligatoria: a-cd:hasUseFunction deve essere materializzata"
+		sh:path a-loc:isContainedInCadastre ;     
+		sh:class a-loc:Cadastre ;
+		sh:severity sh:Violation ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:message "La relazione del'identità catastale con il suo catasto è obbligatoria: a-loc:isContainedInCadastre deve essere materializzata"
 		] ;
 	sh:property [              
-		sh:path core:hasType ;     
-		sh:class a-cd:UseType ;
+		sh:path a-loc:hasCadastralCity ;     
+		sh:class clv:City ;
+		sh:severity sh:Violation ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:message "La relazione del'identità catastale con la città di riferimento è obbligatoria: a-loc:hasCadastralCity deve essere materializzata"
 		] ;
-	
+	sh:property [              
+		sh:path a-loc:hasCadastralEntity ;     
+		sh:class a-loc:Folio ;
+		sh:severity sh:Violation ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:message "La relazione del'identità catastale con il foglio è obbligatoria: a-loc:hasCadastralEntity deve essere materializzata"
+		] ;
+	sh:property [              
+		sh:path a-loc:hasCadastralEntity ;     
+		sh:class a-loc:CadastralUnitCollection ;
+		sh:severity sh:Violation ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:message "La relazione del'identità catastale con le particelle catastali è obbligatoria: a-loc:hasCadastralEntity deve essere materializzata"
+		] ;
 	# NON OBBLIGATORIE
 	sh:property [              
-		sh:path a-cd:useConditions ;     
-		sh:nodeKind sh:Literal ;
+		sh:path a-loc:hasCadastralEntity ;     
+		sh:class a-loc:CadastralSubordinate ;
 		] ;
 	sh:property [              
-		sh:path a-cd:hasCircumstance ;     
-		sh:class a-cd:Circumstance ;
+		sh:path a-cd:hasLegalSituation ;     
+		sh:class a-cd:LegalSituation ;
 		] ;
 	sh:property [              
-		sh:path ti:atTime ;     
-		sh:class ti:TimeInterval ;
+		sh:path a-lite:hasOwner ;     
+		sh:class l0:Agent ;
 		] .

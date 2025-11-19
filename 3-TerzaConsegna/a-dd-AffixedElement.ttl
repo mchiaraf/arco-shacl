@@ -1,0 +1,83 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+@prefix lang: <https://w3id.org/italia/onto/Language/> .
+
+ex:AffixedElementShape
+    a sh:NodeShape ;
+    sh:targetClass a-dd:AffixedElement ;
+	sh:property [              
+		sh:path core:hasType ;     # non ho messo cardinalità perchè nel pregresso non è obbligatorio
+		sh:nodeKind sh:IRI ;
+		sh:minCount 1 ;
+		sh:severity sh:Violation ;
+		sh:message "La relazione dell'elemento tecnico con la sua tipologia tecnica è obbligatoria: core:hasType deve essere materializzata"
+		] ;
+	#non obbligatoria
+	sh:property [              
+		sh:path a-dd:positionOnCulturalProperty ;     
+		sh:nodeKind rdfs:Literal ;
+		] ;
+	sh:property [              
+		sh:path core:descriprion ;     
+		sh:nodeKind rdfs:Literal ;
+		] ;
+	sh:property [              
+		sh:path a-dd:occurrences ;     
+		sh:nodeKind rdfs:Literal ;
+		] ;
+	sh:property [              
+		sh:path a-dd:hasSupport ;    
+		sh:class a-dd:Support ;
+		] ;
+	sh:property [              
+		sh:path a-dd:hasFunctionalPurpose ;    
+		sh:class a-dd:UseFunction ;
+		] ;
+	sh:property [              
+		sh:path lang:hasLanguage ;    
+		sh:class lang:Language ;
+		] ;
+	sh:property [              
+		sh:path a-dd:hasWritingSystem ;    
+		sh:class a-dd:WritingSystem ;
+		] ;
+	sh:property [              
+		sh:path a-dd:hasFontStyle ;    
+		sh:class a-dd:FontStyle ;
+		] ;
+	sh:property [              
+		sh:path a-lite:hasMaterialOrTechnique ;    
+		sh:class a-dd:TechnicalCharacteristic ;
+		] ;
+	sh:property [              
+		sh:path a-dd:transcript ;    
+		sh:nodeKind rdfs:Literal ;
+		] ;
+	sh:property [              
+		sh:path a-lite:hasAuthor ;    
+		sh:class l0:Agent ;
+		] ;
+	sh:property [              
+		sh:path a-dd:refersToAgent ;    
+		sh:class l0:Agent ;
+		] .

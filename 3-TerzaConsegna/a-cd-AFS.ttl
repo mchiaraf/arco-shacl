@@ -5,9 +5,12 @@
 @prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
 @prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
 @prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
-@prefix lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
 @prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
 @prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-spe: <https://w3id.org/arco/ontology/natural-specimen-description/> .
+@prefix a-arc: <https://w3id.org/arco/archives/ontology/archival-resource/> .
 @prefix cis: <http://dati.beniculturali.it/cis/> .
 @prefix clv: <https://w3id.org/italia/onto/CLV/> .
 @prefix core: <https://w3id.org/arco/ontology/core/> .
@@ -18,28 +21,36 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ti: <https://w3id.org/italia/onto/TI/> . 
-@prefix mu: <https://w3id.org/italia/onto/MU/> . 
-@prefix ro: <https://w3id.org/italia/onto/RO/> . 
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ex: <https://w3id.org/arco/shacl/> .
 
-ex:AcquisitionShape
+ex:ArchaeologicalFieldSurveyShape
     a sh:NodeShape ;
-    sh:targetClass a-cd:Acquisition ;
+    sh:targetClass a-cd:ArchaeologicalFieldSurvey ;
 	sh:property [              
-		sh:path core:hasType ;    
-		sh:class a-cd:AcquisitionType ;
-		sh:severity sh:Violation ;
-		sh:message "La relazione dell'acquisizione con la sua tipologia è obbligatoria: core:hasType deve essere materializzata"
+		sh:path a-cd:environmentalState ;     
+		sh:nodeKind rdfs:Literal ;
+		] ;
+	
+	# SCHEDA RCG
+	sh:property [              
+		sh:path a-lite:hasResponsibleAgent ;     
+		sh:class l0:Agent ;
 		] ;
 	sh:property [              
-		sh:path ti:atTime ;     
-		sh:class ti:TimeInterval ;
-		sh:severity sh:Violation ;
-		sh:message "La relazione dell'acquisizione con il riferimento cronologico è obbligatoria: ti:atTime deve essere materializzata"
+		sh:path a-lite:hasSponsor ;     
+		sh:class l0:Agent ;
 		] ;
-	# non abbligatoria
 	sh:property [              
-		sh:path core:hasAgentRole ;     
-		sh:class core:AgentRole ;
-		] .
+		sh:path a-lite:hasCataloguingAgency ;     
+		sh:class l0:Agent ;
+		] ;
+	sh:property [              
+		sh:path core:hasIdentifier ;     
+		sh:class core:Identifier ;
+		] ;
+	sh:property [              
+		sh:path a-cd:historicalInformation ;     
+		sh:nodeKind rdfs:Literal ;
+		] ;
+		

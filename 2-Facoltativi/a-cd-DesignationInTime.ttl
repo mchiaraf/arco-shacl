@@ -33,7 +33,7 @@ ex:DesignationInTimeShape
     ] ;
 	sh:property [              
 		sh:path core:hasType ;     
-		sh:class a-cd:DesignationType ;
+		sh:class a-cd:DesignationType ; # METTI INDIVIDUI
 		sh:severity sh:Violation ;
 		sh:message "La relazione della condizione giuridica con la sua tipologia è obbligatoria: core:hasType deve essere materializzata"
 		] ;

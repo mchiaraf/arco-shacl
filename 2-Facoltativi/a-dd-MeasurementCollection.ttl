@@ -21,7 +21,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ex: <https://w3id.org/arco/shacl/> .
 
-ex:TechnicalStatusShape
+ex:MeasurementCollectionShape
     a sh:NodeShape ;
     sh:targetClass a-dd:MeasurementCollection ;
 	sh:property [              

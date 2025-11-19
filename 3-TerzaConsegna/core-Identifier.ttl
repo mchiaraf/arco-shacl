@@ -27,15 +27,16 @@ ex:IdentifierShape
     sh:targetClass core:Identifier ;
 	sh:property [              
 		sh:path core:hasType ;     
-		sh:class core:IdentifierType ; # nel caso possiamo mettere solo: "sh:NodeKind sh:IRI" --> METTERE IRI DEI TIPI: 
-		#https://w3id.org/arco/ontology/core/LocalIdentifier
-		#https://w3id.org/arco/ontology/core/NationalIdentifier
-		#https://w3id.org/arco/ontology/core/SystemIdentifier
-		#https://w3id.org/arco/ontology/core/UniqueIdentifier
-		#https://w3id.org/arco/ontology/core/InternationalIdentifier
-		#https://w3id.org/arco/ontology/core/ICCDIdentifier
+		sh:or (
+			[ sh:hasValue core:LocalIdentifier ]
+			[ sh:hasValue core:NationalIdentifier ]
+			[ sh:hasValue core:SystemIdentifier ]
+			[ sh:hasValue core:UniqueIdentifier ]
+			[ sh:hasValue core:InternationalIdentifier ]
+			[ sh:hasValue core:ICCDIdentifier ]
+		) ;
 		sh:severity sh:Warning ;
-		sh:message "La relazione dell'identificativo con la sua tipologia è consigliata: core:hasType potrebbe essere materializzata"
+		sh:message "La relazione dell'identificativo con la sua tipologia è consigliata: core:hasType potrebbe essere materializzata e avere come oggetto gli individui previsti da core:IdentifierType."
 		] ;
 	sh:property [              
 		sh:path core:identifier ;     

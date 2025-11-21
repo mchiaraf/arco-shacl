@@ -1,0 +1,102 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-cc: <https://w3id.org/arco/ontology/cataloguing-campaign/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-con: <https://w3id.org/arco/ontology/construction-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-spe: <https://w3id.org/arco/ontology/natural-specimen-description/> .
+@prefix a-arc: <https://w3id.org/arco/archives/ontology/archival-resource/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+
+### CATALOGUING CAMPAIGN
+
+ex:ActivityStatusDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cc:ActivityStatus ;
+	sh:message "Un individuo della classe a-cc:ActivityStatus non può essere anche di tipo a-cc:ApplicationStatus o a-cc:CampaignStatus" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cc:ApplicationStatus ]
+				[ sh:class a-cc:CampaignStatus ]
+			)
+		] .
+
+ex:ApplicationStatusDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cc:ApplicationStatus ;
+	sh:message "Un individuo della classe a-cc:ApplicationStatus non può essere anche di tipo a-cc:ActivityStatus o a-cc:CampaignStatus" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cc:ActivityStatus ]
+				[ sh:class a-cc:CampaignStatus ]
+			)
+		] .
+
+ex:CampaignStatusDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cc:CampaignStatus ;
+	sh:message "Un individuo della classe a-cc:CampaignStatus non può essere anche di tipo a-cc:ActivityStatus o a-cc:ApplicationStatus" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cc:ActivityStatus ]
+				[ sh:class a-cc:ApplicationStatus ]
+			)
+		] .
+
+ex:CatalogueNumbersAssignementDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cc:CatalogueNumbersAssignement ;
+	sh:message "Un individuo della classe a-cc:CatalogueNumbersAssignment non può essere anche di tipo a-cc:CataloguingActivity o a-cc:CataloguingOrDigitalizationCampaign" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:CataloguingActivity ]
+				[ sh:class a-cat:CataloguingOrDigitalizationCampaign ]
+			)
+		] .
+
+ex:CataloguingActivitytDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cc:CatalogueNumbersAssignement ;
+	sh:message "Un individuo della classe a-cc:CataloguingActivity non può essere anche di tipo a-cc:CatalogueNumbersAssignment o a-cc:CataloguingOrDigitalizationCampaign" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cc:CatalogueNumbersAssignement ]
+				[ sh:class a-cc:CataloguingOrDigitalizationCampaign ]
+			)
+		] .
+
+ex:CataloguingOrDigitalizationCampaignDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cc:CataloguingOrDigitalizationCampaign ;
+	sh:message "Un individuo della classe a-cc:CataloguingOrDigitalizationCampaign non può essere anche di tipo a-cc:CatalogueNumbersAssignment o a-cc:CataloguingActivity" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cc:CatalogueNumbersAssignement ]
+				[ sh:class a-cc:CataloguingActivity ]
+			)
+		] .

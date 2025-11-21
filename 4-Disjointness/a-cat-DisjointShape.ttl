@@ -1,0 +1,180 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-cc: <https://w3id.org/arco/ontology/cataloguing-campaign/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-con: <https://w3id.org/arco/ontology/construction-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-spe: <https://w3id.org/arco/ontology/natural-specimen-description/> .
+@prefix a-arc: <https://w3id.org/arco/archives/ontology/archival-resource/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+
+### CATALOGUE 
+ex:AccessProfileDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cat:AccessProfile ;
+	sh:message "Un individuo della classe a-cat:AccessProfile non può essere anche di tipo a-cat:CataloguingLevel o a-cat:PrivacyLevel" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:CataloguingLevel ]
+				[ sh:class a-cat:PrivacyLevel ]
+			)
+		] .
+
+ex:CataloguingLevelDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cat:CataloguingLevel ;
+	sh:message "Un individuo della classe a-cat:CataloguingLevel non può essere anche di tipo a-cat:AccessProfile o a-cat:PrivacyLevel" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:AccessProfile ]
+				[ sh:class a-cat:PrivacyLevel ]
+			)
+		] .
+
+ex:PrivacyLevelDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cat:PrivacyLevel ;
+	sh:message "Un individuo della classe a-cat:PrivacyLevel non può essere anche di tipo a-cat:AccessProfile o a-cat:CataloguingLevel" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:CataloguingLevel ]
+				[ sh:class a-cat:PrivacyLevel ]
+			)
+		] .
+
+ex:CatalogueRecordDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei CatalogueRecord*
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cat:CatalogueRecordA
+                a-cat:CatalogueRecordAT
+                a-cat:CatalogueRecordBDI
+                a-cat:CatalogueRecordBDM
+                a-cat:CatalogueRecordBNB
+                a-cat:CatalogueRecordBNM
+                a-cat:CatalogueRecordBNP
+                a-cat:CatalogueRecordBNPE
+                a-cat:CatalogueRecordBNPL
+                a-cat:CatalogueRecordBNZ
+                a-cat:CatalogueRecordCA
+                a-cat:CatalogueRecordCNS
+                a-cat:CatalogueRecordD
+                a-cat:CatalogueRecordF
+                a-cat:CatalogueRecordFF
+                a-cat:CatalogueRecordMA
+                a-cat:CatalogueRecordMI
+                a-cat:CatalogueRecordNU
+                a-cat:CatalogueRecordOA
+                a-cat:CatalogueRecordOAC
+                a-cat:CatalogueRecordPG
+                a-cat:CatalogueRecordPST
+                a-cat:CatalogueRecordRA
+                a-cat:CatalogueRecordS
+                a-cat:CatalogueRecordSAS
+                a-cat:CatalogueRecordSI
+                a-cat:CatalogueRecordSM
+                a-cat:CatalogueRecordSMO
+                a-cat:CatalogueRecordTMA
+                a-cat:CatalogueRecordVeAC
+            ) ;
+        ] ;
+    ] ;
+
+    sh:message "Un individuo può essere di una sola tipologia di CatalogueRecord." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cat:CatalogueRecordA ]
+        [ sh:class a-cat:CatalogueRecordAT ]
+        [ sh:class a-cat:CatalogueRecordBDI ]
+        [ sh:class a-cat:CatalogueRecordBDM ]
+        [ sh:class a-cat:CatalogueRecordBNB ]
+        [ sh:class a-cat:CatalogueRecordBNM ]
+        [ sh:class a-cat:CatalogueRecordBNP ]
+        [ sh:class a-cat:CatalogueRecordBNPE ]
+        [ sh:class a-cat:CatalogueRecordBNPL ]
+        [ sh:class a-cat:CatalogueRecordBNZ ]
+        [ sh:class a-cat:CatalogueRecordCA ]
+        [ sh:class a-cat:CatalogueRecordCNS ]
+        [ sh:class a-cat:CatalogueRecordD ]
+        [ sh:class a-cat:CatalogueRecordF ]
+        [ sh:class a-cat:CatalogueRecordFF ]
+        [ sh:class a-cat:CatalogueRecordMA ]
+        [ sh:class a-cat:CatalogueRecordMI ]
+        [ sh:class a-cat:CatalogueRecordNU ]
+        [ sh:class a-cat:CatalogueRecordOA ]
+        [ sh:class a-cat:CatalogueRecordOAC ]
+        [ sh:class a-cat:CatalogueRecordPG ]
+        [ sh:class a-cat:CatalogueRecordPST ]
+        [ sh:class a-cat:CatalogueRecordRA ]
+        [ sh:class a-cat:CatalogueRecordS ]
+        [ sh:class a-cat:CatalogueRecordSAS ]
+        [ sh:class a-cat:CatalogueRecordSI ]
+        [ sh:class a-cat:CatalogueRecordSM ]
+        [ sh:class a-cat:CatalogueRecordSMO ]
+        [ sh:class a-cat:CatalogueRecordTMA ]
+        [ sh:class a-cat:CatalogueRecordVeAC ]
+    ) .
+
+ex:AdditionalFormDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cat:AdditionalForm ;
+	sh:message "Un individuo della classe a-cat:AdditionalForm non può essere anche di tipo a-cat:CatalogueRecordVersion o a-cat:InformationForm o a-cat:Record" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:CatalogueRecordVersion ]
+				[ sh:class a-cat:InformationForm ]
+				[ sh:class a-cat:Record ]
+			)
+		] .
+
+ex:CatalogueRecordVersionDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cat:CatalogueRecordVersion ;
+	sh:message "Un individuo della classe a-cat:CatalogueRecordVersion non può essere anche di tipo a-cat:AdditionalForm o a-cat:InformationForm o a-cat:Record" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:AdditionalForm ]
+				[ sh:class a-cat:InformationForm ]
+				[ sh:class a-cat:Record ]
+			)
+		] .
+
+ex:AdditionalFormDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cat:AdditionalForm ;
+	sh:message "Un individuo della classe a-cat:AdditionalForm non può essere anche di tipo a-cat:CatalogueRecordVersion o a-cat:InformationForm o a-cat:Record" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:CatalogueRecordVersion ]
+				[ sh:class a-cat:InformationForm ]
+				[ sh:class a-cat:Record ]
+			)
+		] .

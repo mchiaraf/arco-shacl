@@ -1,0 +1,64 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-cc: <https://w3id.org/arco/ontology/cataloguing-campaign/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-con: <https://w3id.org/arco/ontology/construction-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-spe: <https://w3id.org/arco/ontology/natural-specimen-description/> .
+@prefix a-arc: <https://w3id.org/arco/archives/ontology/archival-resource/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+### ARCO
+ex:MovableDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass arco:MovableCulturalProperty ;
+	sh:message "Un bene mobile non può essere anche un bene immobile" ;
+    sh:severity sh:Violation ;
+	sh:not [ 
+		sh:class arco:ImmovableCulturalProperty 
+		] .
+
+ex:ImmovableDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass arco:ImmovableCulturalProperty ;
+	sh:message "Un bene immobile non può essere anche un bene mobile" ;
+    sh:severity sh:Violation ;
+	sh:not [ 
+		sh:class arco:MovableCulturalProperty 
+		] .
+
+ex:TangibleDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass arco:TangibleCulturalProperty ;
+	sh:message "Un bene materiale non può essere anche un bene immateriale" ;
+    sh:severity sh:Violation ;
+	sh:not [ 
+		sh:class arco:IntangibleCulturalProperty 
+		] .
+
+ex:IntangibleDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass arco:IntangibleCulturalProperty ;
+	sh:message "Un bene immateriale non può essere anche un bene materiale" ;
+    sh:severity sh:Violation ;
+	sh:not [ 
+		sh:class arco:TangibleCulturalProperty 
+		] .

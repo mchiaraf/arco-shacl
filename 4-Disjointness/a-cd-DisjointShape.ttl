@@ -1,0 +1,217 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-cc: <https://w3id.org/arco/ontology/cataloguing-campaign/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-con: <https://w3id.org/arco/ontology/construction-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-spe: <https://w3id.org/arco/ontology/natural-specimen-description/> .
+@prefix a-arc: <https://w3id.org/arco/archives/ontology/archival-resource/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+
+### CONTEXT DESCRIPTION
+
+ex:DocumentationTypeDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:DocumentationType
+                a-cd:BibliographyType
+            ) ;
+        ] ;
+    ] ;
+	sh:message "Un individuo della classe a-cd:DocumentationType non può essere anche di tipo a-cd:BibliographyType" ;
+    sh:severity sh:Violation ;
+	sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:DocumentationType ]
+        [ sh:class a-cd:BibliographyType ]
+    ) .
+
+
+ex:FinalWorkDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:FinalWork
+                a-cd:PreparatoryWork
+            ) ;
+        ] ;
+    ] ;
+	sh:message "Un individuo della classe a-cd:FinalWork non può essere anche di tipo a-cd:PreparatoryWork" ;
+    sh:severity sh:Violation ;
+	sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:FinalWork ]
+        [ sh:class a-cd:PreparatoryWork ]
+    ) .
+
+
+ex:InterventionSurveyDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:Intervention
+                a-cd:Survey
+            ) ;
+        ] ;
+    ] ;
+    sh:targetClass a-cd:Intervention ;
+	sh:message "Un individuo della classe a-cd:Intervention non può essere anche di tipo a-cd:Survey" ;
+    sh:severity sh:Violation ;
+	sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:Survey ]
+        [ sh:class a-cd:Intervention ]
+    ) .
+
+
+ex:ProfessionUseFunctionDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:Profession
+                a-cd:UseFunction
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-cd:Profession, a-cd:UseFunction." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:Profession ]
+        [ sh:class a-cd:UseFunction ]
+    ) .
+
+
+ex:SituationCDDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:Acquisition
+                a-cd:Anomaly
+                a-cd:ChangeOfAvailability
+                a-cd:Circumstance
+                a-cd:CoinIssuance
+                a-cd:ExportImportCertification
+                a-cd:LegalSituation
+                a-cd:CollectionMembership
+                a-cd:RelatedWorkSituation
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-cd:Acquisition, a-cd:Anomaly, a-cd:ChangeOfAvailability, a-cd:Circumstance, a-cd:CoinIssuance, a-cd:ExportImportCertification, a-cd:LegalSituation, a-cd:CollectionMembership, a-cd:RelatedWorkSituation." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:Acquisition ]
+        [ sh:class a-cd:Anomaly ]
+        [ sh:class a-cd:ChangeOfAvailability ]
+        [ sh:class a-cd:Circumstance ]
+        [ sh:class a-cd:CoinIssuance ]
+        [ sh:class a-cd:ExportImportCertification ]
+        [ sh:class a-cd:LegalSituation ]
+        [ sh:class a-cd:CollectionMembership ]
+        [ sh:class a-cd:RelatedWorkSituation ]
+    ) .
+
+
+ex:SituationTypeCDDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:AcquisitionType
+                a-cd:AnomalyType
+                a-cd:ChangeOfAvailability
+                a-cd:Circumstance
+                a-cd:CoinIssuance
+                a-cd:ExportImportCertification
+                a-cd:LegalSituation
+                a-cd:CollectionMembership
+                a-cd:RelatedWorkSituation
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-cd:Acquisition, a-cd:Anomaly, a-cd:ChangeOfAvailability, a-cd:Circumstance, a-cd:CoinIssuance, a-cd:ExportImportCertification, a-cd:LegalSituation, a-cd:CollectionMembership, a-cd:RelatedWorkSituation." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:Acquisition ]
+        [ sh:class a-cd:Anomaly ]
+        [ sh:class a-cd:ChangeOfAvailability ]
+        [ sh:class a-cd:Circumstance ]
+        [ sh:class a-cd:CoinIssuance ]
+        [ sh:class a-cd:ExportImportCertification ]
+        [ sh:class a-cd:LegalSituation ]
+        [ sh:class a-cd:CollectionMembership ]
+        [ sh:class a-cd:RelatedWorkSituation ]
+    ) .
+
+ex:AdditionalFormDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cat:AdditionalForm ;
+	sh:message "Un individuo della classe a-cat:AdditionalForm non può essere anche di tipo a-cat:CatalogueRecordVersion o a-cat:InformationForm o a-cat:Record" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:CatalogueRecordVersion ]
+				[ sh:class a-cat:InformationForm ]
+				[ sh:class a-cat:Record ]
+			)
+		] .
+
+ex:CatalogueRecordVersionDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cat:CatalogueRecordVersion ;
+	sh:message "Un individuo della classe a-cat:CatalogueRecordVersion non può essere anche di tipo a-cat:AdditionalForm o a-cat:InformationForm o a-cat:Record" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:AdditionalForm ]
+				[ sh:class a-cat:InformationForm ]
+				[ sh:class a-cat:Record ]
+			)
+		] .
+
+ex:AdditionalFormDisjointShape
+    a sh:NodeShape ;
+    sh:targetClass a-cat:AdditionalForm ;
+	sh:message "Un individuo della classe a-cat:AdditionalForm non può essere anche di tipo a-cat:CatalogueRecordVersion o a-cat:InformationForm o a-cat:Record" ;
+    sh:severity sh:Violation ;
+	sh:not [
+			sh:or (
+				[ sh:class a-cat:CatalogueRecordVersion ]
+				[ sh:class a-cat:InformationForm ]
+				[ sh:class a-cat:Record ]
+			)
+		] .

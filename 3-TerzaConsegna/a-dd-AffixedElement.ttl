@@ -26,7 +26,7 @@ ex:AffixedElementShape
     a sh:NodeShape ;
     sh:targetClass a-dd:AffixedElement ;
 	sh:property [              
-		sh:path core:hasType ;     # non ho messo cardinalità perchè nel pregresso non è obbligatorio
+		sh:path core:hasType ;    
 		sh:nodeKind sh:IRI ;
 		sh:minCount 1 ;
 		sh:severity sh:Violation ;

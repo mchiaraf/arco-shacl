@@ -53,8 +53,4 @@ ex:SurveyShape
 	sh:property [              
 		sh:path a-cd:hasSurveyMotivation ;     
 		sh:class a-cd:SurveyMotivation ;
-		] ;
-	sh:property [              
-		sh:path a-cd:environmentalState ;     
-		sh:nodeKind rdfs:Literal ;
 		] .

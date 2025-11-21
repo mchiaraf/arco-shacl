@@ -52,5 +52,5 @@ ex:ArchaeologicalFieldSurveyShape
 	sh:property [              
 		sh:path a-cd:historicalInformation ;     
 		sh:nodeKind rdfs:Literal ;
-		] ;
+		] .
 		

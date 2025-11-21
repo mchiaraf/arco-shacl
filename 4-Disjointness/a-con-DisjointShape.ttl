@@ -176,7 +176,7 @@ ex:ConstructionTypesDisjointShape
 ex:LiftEscalatorMWDisjointShape
     a sh:NodeShape ;
     sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
-    sh:filterShape [     # restrizione solo se il tipo è uno dei ConstructionElement*
+    sh:filterShape [     
         sh:property [
             sh:path rdf:type ;
             sh:in (

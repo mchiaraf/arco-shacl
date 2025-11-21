@@ -23,7 +23,8 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ex: <https://w3id.org/arco/shacl/> .
 
-# Capire anche da ICCD quale saranno i descrittori delle collezioni
+# Capire anche da ICCD quale saranno i descrittori delle collezioni + inserire le altre sottoclassi di CCE e Collection
+
 
 ex:CollectionCulEntShape
     a sh:NodeShape ;

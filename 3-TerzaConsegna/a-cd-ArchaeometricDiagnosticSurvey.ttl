@@ -50,5 +50,5 @@ ex:ArchaeometricDiagnosticSurveyShape
 		] ;
 	sh:property [              
 		sh:path a-cd:report ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] .

@@ -36,7 +36,7 @@ ex:ArchaeologicalExcavationShape
 			] ;
 	sh:property [              
 		sh:path a-lite:alternativeDesignation ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-lite:hasResponsibleAgent ;     
@@ -56,9 +56,9 @@ ex:ArchaeologicalExcavationShape
 		] ;
 	sh:property [              
 		sh:path a-cd:historicalInformation ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-cd:areaRoomSquare ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] .

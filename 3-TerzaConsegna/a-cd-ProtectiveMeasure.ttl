@@ -30,7 +30,7 @@ ex:ProtectiveMeasureShape
     sh:targetClass a-cd:ProtectiveMeasure ;
 	sh:property [              
 		sh:path l0:name ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		sh:severity sh:Violation ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -39,19 +39,19 @@ ex:ProtectiveMeasureShape
 	# NON OBBL ANAGRAFICA
 	sh:property [              
 		sh:path a-cd:issueDate ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-cd:noticeDate ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-cd:registrationDateOrGU ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-cd:openingNoticeDate ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-lite:hasProponentAgent ;     
@@ -63,5 +63,5 @@ ex:ProtectiveMeasureShape
 		] ;
 	sh:property [              
 		sh:path core:note ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] .

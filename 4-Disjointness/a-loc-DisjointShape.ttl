@@ -4,7 +4,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
 @prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-cc: <https://w3id.org/arco/ontology/cataloguing-campaign/> .
 @prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-con: <https://w3id.org/arco/ontology/construction-description/> .
 @prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
 @prefix a-loc: <https://w3id.org/arco/ontology/location/> .
 @prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
@@ -24,33 +26,43 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ex: <https://w3id.org/arco/shacl/> .
 
-ex:CadastreShape
+
+### LOCATION 
+
+ex:GeometryTechniqueMethodDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-cd:Cadastre ;
-	sh:property [              
-		sh:path core:hasType ;     
-		sh:or (
-			[ sh:hasValue a-loc:LandCadastre ]
-			[ sh:hasValue a-loc:BuildingCadastre ]
-			[ sh:hasValue a-loc:BuildingAndLandCadastre ]
-		) ;
-		sh:severity sh:Violation ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:message "La relazione del catasto con la sua tipologia è obbligatoria: core:hasType deve essere materializzata"
-		] ;
-	sh:property [              
-		sh:path a-lite:hasCity ;     
-		sh:class clv:City ;
-		sh:severity sh:Violation ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:message "La relazione del catasto con la città di riferimento è obbligatoria: a-lite:hasCity deve essere materializzata"
-		] ;
-	sh:property [              
-		sh:path l0:name ;     
-		sh:nodeKind sh:Literal ;
-		sh:minCount 1 ;
-		sh:severity sh:Violation ;
-		sh:message "La relazione del catasto con il suo nome è obbligatoria: l0:name deve essere materializzata"
-		] .
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-loc:GeometryMethod
+                a-loc:GeometryTechnique
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-loc:GeometryMethod, a-dd:GeometryTechnique." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-loc:GeometryTechnique ]
+        [ sh:class a-loc:GeometryMethod ]
+    ) .
+
+ex:AddressComponentDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                clv:Address
+                clv:AddressComponent
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra clv:Address, clv:AddressComponent." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class clv:Address ]
+        [ sh:class clv:AddressComponent ]
+    ) .

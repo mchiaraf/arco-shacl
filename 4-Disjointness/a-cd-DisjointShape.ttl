@@ -78,15 +78,16 @@ ex:InterventionSurveyDisjointShape
             sh:in (
                 a-cd:Intervention
                 a-cd:Survey
+                a-cd:Research
             ) ;
         ] ;
     ] ;
-    sh:targetClass a-cd:Intervention ;
 	sh:message "Un individuo della classe a-cd:Intervention non può essere anche di tipo a-cd:Survey" ;
     sh:severity sh:Violation ;
 	sh:xone ( 	# solo una classe tra le seguenti
         [ sh:class a-cd:Survey ]
         [ sh:class a-cd:Intervention ]
+        [ sh:class a-cd:Research ]
     ) .
 
 
@@ -177,41 +178,137 @@ ex:SituationTypeCDDisjointShape
         [ sh:class a-cd:RelatedWorkSituation ]
     ) .
 
-ex:AdditionalFormDisjointShape
+ex:SurveyCDDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-cat:AdditionalForm ;
-	sh:message "Un individuo della classe a-cat:AdditionalForm non può essere anche di tipo a-cat:CatalogueRecordVersion o a-cat:InformationForm o a-cat:Record" ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:ArchaeologicalExcavation
+                a-cd:ArchaeologicalFieldSurvey
+                a-cd:ArchaeologicalPropertySurvey
+                a-cd:ArchaeometricDiagnosticSurvey
+                a-cd:Inspection
+                a-cd:LaboratoryTest
+                a-cd:ObservationSurvey
+                a-cd:PaleopathologySurvey
+                a-cd:PhotoInterpretationRendering
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-cd:ArchaeologicalExcavation, a-cd:ArchaeologicalFieldSurvey, a-cd:ArchaeologicalPropertySurvey, a-cd:ArchaeometricDiagnosticSurvey, a-cd:Inspection, a-cd:LaboratoryTest, a-cd:ObservationSurvey, a-cd:PaleopathologySurvey, a-cd:PhotoInterpretationRendering." ;
     sh:severity sh:Violation ;
-	sh:not [
-			sh:or (
-				[ sh:class a-cat:CatalogueRecordVersion ]
-				[ sh:class a-cat:InformationForm ]
-				[ sh:class a-cat:Record ]
-			)
-		] .
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:ArchaeologicalExcavation ]
+        [ sh:class a-cd:ArchaeologicalFieldSurvey ]
+        [ sh:class a-cd:ArchaeologicalPropertySurvey ]
+        [ sh:class a-cd:ArchaeometricDiagnosticSurvey ]
+        [ sh:class a-cd:Inspection ]
+        [ sh:class a-cd:LaboratoryTest ]
+        [ sh:class a-cd:ObservationSurvey ]
+        [ sh:class a-cd:PaleopathologySurvey ]
+        [ sh:class a-cd:PhotoInterpretationRendering ]
+    ) .
 
-ex:CatalogueRecordVersionDisjointShape
+ex:ObjectCDDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-cat:CatalogueRecordVersion ;
-	sh:message "Un individuo della classe a-cat:CatalogueRecordVersion non può essere anche di tipo a-cat:AdditionalForm o a-cat:InformationForm o a-cat:Record" ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:Copyright
+                a-cd:Reproduction
+                a-cd:Scale
+                a-cd:Title
+                a-cd:Tomb
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-cd:Copyright, a-cd:Reproduction, a-cd:Scale, a-cd:Title, a-cd:Tomb." ;
     sh:severity sh:Violation ;
-	sh:not [
-			sh:or (
-				[ sh:class a-cat:AdditionalForm ]
-				[ sh:class a-cat:InformationForm ]
-				[ sh:class a-cat:Record ]
-			)
-		] .
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:Copyright ]
+        [ sh:class a-cd:Reproduction ]
+        [ sh:class a-cd:Scale ]
+        [ sh:class a-cd:Title ]
+        [ sh:class a-cd:Tomb ]
+    ) .
 
-ex:AdditionalFormDisjointShape
+ex:CategoryCDDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-cat:AdditionalForm ;
-	sh:message "Un individuo della classe a-cat:AdditionalForm non può essere anche di tipo a-cat:CatalogueRecordVersion o a-cat:InformationForm o a-cat:Record" ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:BibliographyCategory
+                a-cd:DocumentationCategory
+                a-cd:SECCategory
+                a-cd:SECIdentifier
+                a-cd:UserSocialCategory
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-cd:BibliographyCategory, a-cd:DocumentationCategory, a-cd:SECCategory, a-cd:SECIdentifier, a-cd:UserSocialCategory." ;
     sh:severity sh:Violation ;
-	sh:not [
-			sh:or (
-				[ sh:class a-cat:CatalogueRecordVersion ]
-				[ sh:class a-cat:InformationForm ]
-				[ sh:class a-cat:Record ]
-			)
-		] .
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:BibliographyCategory ]
+        [ sh:class a-cd:DocumentationCategory ]
+        [ sh:class a-cd:SECCategory ]
+        [ sh:class a-cd:SECIdentifier ]
+        [ sh:class a-cd:UserSocialCategory ]
+    ) .
+
+ex:CircumstanceCDDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:FairMarketCircumstance
+                a-cd:IndeterminateCircumstance
+                a-cd:LifeCycleCircumstance
+                a-cd:ProductionCycleCircumstance
+                a-cd:SeasonCycleCircumstance
+                a-cd:SocialInteractionCircumstance
+                a-cd:WorkCircumstance
+                a-cd:YearCycleCircumstance
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-cd:FairMarketCircumstance, a-cd:IndeterminateCircumstance, a-cd:LifeCycleCircumstance, a-cd:ProductionCycleCircumstance, a-cd:SeasonCycleCircumstance, a-cd:SocialInteractionCircumstance, a-cd:WorkCircumstance, a-cd:YearCycleCircumstance." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:FairMarketCircumstance ]
+        [ sh:class a-cd:IndeterminateCircumstance ]
+        [ sh:class a-cd:LifeCycleCircumstance ]
+        [ sh:class a-cd:ProductionCycleCircumstance ]
+        [ sh:class a-cd:SeasonCycleCircumstance ]
+        [ sh:class a-cd:SocialInteractionCircumstance ]
+        [ sh:class a-cd:WorkCircumstance ]
+        [ sh:class a-cd:YearCycleCircumstance ]
+    ) .
+
+ex:FormatUseMotivationCDDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-cd:Format
+                a-cd:SurveyMotivation
+                a-cd:Use
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-cd:Format, a-cd:SurveyMotivation, a-cd:Use." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-cd:Format ]
+        [ sh:class a-cd:SurveyMotivation ]
+        [ sh:class a-cd:Use ]
+    ) .

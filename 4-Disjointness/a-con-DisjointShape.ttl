@@ -29,95 +29,100 @@
 
 ### CONSTRUCTION
 
-ex:ConstructionElementDisjointShape
+ex:ConstructionElementSpaceDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-con:ConstructionElement ;
-	sh:message "Un individuo della classe a-con:ConstructionElement non può essere anche di tipo a-con:ConstructionSpace" ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei ConstructionElement
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-con:ConstructionElement
+                a-con:ConstructionSpace
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-con:ConstructionElement, a-con:ConstructionSpace" ;
     sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:ConstructionSpace 
-		] .
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-con:ConstructionElement ]
+        [ sh:class a-con:ConstructionSpace ]
+    ) .
 
-ex:ConstructionSpaceDisjointShape
+ex:PlanimetricElevationDevelopmentDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-con:ConstructionSpace ;
-	sh:message "Un individuo della classe a-con:ConstructionSpace non può essere anche di tipo a-con:ConstructionElement" ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-con:PlanimetricDevelopment
+                a-con:ElevationDevelopment
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-con:PlanimetricDevelopment, a-con:ElevationDevelopment" ;
     sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:ConstructionElement 
-		] .
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-con:PlanimetricDevelopment ]
+        [ sh:class a-con:ElevationDevelopment ]
+    ) .
 
-ex:PlanimetricDevelopmentDisjointShape
+ex:FlooringRoofingDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-con:PlanimetricDevelopment ;
-	sh:message "Un individuo della classe a-con:PlanimetricDevelopment non può essere anche di tipo a-con:ElevationDevelopment" ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-con:Flooring
+                a-con:Roofing
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-con:Flooring, a-con:Roofing" ;
     sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:ElevationDevelopment 
-		] .
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-con:Flooring ]
+        [ sh:class a-con:Roofing ]
+    ) .
 
-ex:ElevationDevelopmentDisjointShape
+ex:FlooringRoofingTypeDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-con:ElevationDevelopment ;
-	sh:message "Un individuo della classe a-con:ElevationDevelopment non può essere anche di tipo a-con:PlanimetricDevelopment" ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-con:FlooringType
+                a-con:RoofingType
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-con:FlooringType, a-con:RoofingType" ;
     sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:PlanimetricDevelopment 
-		] .
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-con:FlooringType ]
+        [ sh:class a-con:RoofingType ]
+    ) .
 
-ex:FlooringDisjointShape
+ex:RampStairsDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-con:Flooring ;
-	sh:message "Un individuo della classe a-con:Flooring non può essere anche di tipo a-con:Roofing" ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-con:Ramp
+                a-con:Stairs
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-con:Ramp, a-con:Stairs" ;
     sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:Roofing 
-		] .
-
-ex:RoofingDisjointShape
-    a sh:NodeShape ;
-    sh:targetClass a-con:Roofing ;
-	sh:message "Un individuo della classe a-con:Roofing non può essere anche di tipo a-con:Flooring" ;
-    sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:Flooring 
-		] .
-
-ex:FlooringTypeDisjointShape
-    a sh:NodeShape ;
-    sh:targetClass a-con:FlooringType ;
-	sh:message "Un individuo della classe a-con:FlooringType non può essere anche di tipo a-con:RoofingType" ;
-    sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:RoofingType
-		] .
-
-ex:RoofingTypeDisjointShape
-    a sh:NodeShape ;
-    sh:targetClass a-con:RoofingType ;
-	sh:message "Un individuo della classe a-con:RoofingType non può essere anche di tipo a-con:FlooringType" ;
-    sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:FlooringType
-		] .
-
-ex:RampDisjointShape
-    a sh:NodeShape ;
-    sh:targetClass a-con:Ramp ;
-	sh:message "Un individuo della classe a-con:Ramp non può essere anche di tipo a-con:Stairs" ;
-    sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:Stairs
-		] .
-
-ex:StairsDisjointShape
-    a sh:NodeShape ;
-    sh:targetClass a-con:Stairs ;
-	sh:message "Un individuo della classe a-con:Stairs non può essere anche di tipo a-con:Ramp" ;
-    sh:severity sh:Violation ;
-	sh:not [ 
-		sh:class a-con:Ramp
-		] .
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-con:Ramp ]
+        [ sh:class a-con:Stairs ]
+    ) .
 
 ex:ElementDisjointShape
     a sh:NodeShape ;

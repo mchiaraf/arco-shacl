@@ -35,15 +35,15 @@ ex:AffixedElementShape
 	#non obbligatoria
 	sh:property [              
 		sh:path a-dd:positionOnCulturalProperty ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path core:descriprion ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-dd:occurrences ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-dd:hasSupport ;    
@@ -71,7 +71,7 @@ ex:AffixedElementShape
 		] ;
 	sh:property [              
 		sh:path a-dd:transcript ;    
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-lite:hasAuthor ;    

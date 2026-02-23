@@ -39,7 +39,7 @@ ex:UrbanPlanningInstrumentShape
 	# NON OBBL ANAGRAFICA
 	sh:property [              
 		sh:path a-cd:definesEligibleIntervention ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
 		sh:path a-lite:hasIssuingAgency ;     
@@ -51,5 +51,5 @@ ex:UrbanPlanningInstrumentShape
 		] ;
 	sh:property [              
 		sh:path core:note ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] .

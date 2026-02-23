@@ -1,0 +1,357 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-cc: <https://w3id.org/arco/ontology/cataloguing-campaign/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-con: <https://w3id.org/arco/ontology/construction-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-spe: <https://w3id.org/arco/ontology/natural-specimen-description/> .
+@prefix a-arc: <https://w3id.org/arco/archives/ontology/archival-resource/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+
+### NATURAL SPECIMEN DESCRIPTION 
+
+ex:SpecimenHarvestingAccessionDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:Accession
+                a-spe:SpecimenHarvesting
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:Accession, a-spe:SpecimenHarvesting." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:Accession ]
+        [ sh:class a-spe:SpecimenHarvesting ]
+    ) .
+
+ex:SpecimenArtificialNaturalDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:ArtificialSpecimen
+                a-spe:NaturalSpecimen
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:ArtificialSpecimen, a-spe:NaturalSpecimen." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:ArtificialSpecimen ]
+        [ sh:class a-spe:NaturalSpecimen ]
+    ) .
+
+ex:MineralBiologicalTaxonDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:MineralTaxon
+                a-spe:BiologicalTaxon
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:MineralTaxon, a-spe:BiologicalTaxon." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:MineralTaxon ]
+        [ sh:class a-spe:BiologicalTaxon ]
+    ) .
+
+ex:CultivarBotanicalFormDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:Cultivar
+                a-spe:BotanicalForm
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:Cultivar, a-spe:BotanicalForm." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:Cultivar ]
+        [ sh:class a-spe:BotanicalForm ]
+    ) .
+
+ex:PhysicalCrystallographicCharDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:PhysicalCharacteristic
+                a-spe:CrystallographicCharacteristic
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:PhysicalCharacteristic, a-spe:CrystallographicCharacteristic." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:PhysicalCharacteristic ]
+        [ sh:class a-spe:CrystallographicCharacteristic ]
+    ) .
+
+ex:LithologicTypeDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:LithologicType
+                a-spe:RockType
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:LithologicType, a-spe:RockType." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:LithologicType ]
+        [ sh:class a-spe:RockType ]
+    ) .
+
+ex:MetallicNotMetallicDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:MetallicSpecimen
+                a-spe:NotMetallicSpecimen
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:MetallicSpecimen, a-spe:NotMetallicSpecimen." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:MetallicSpecimen ]
+        [ sh:class a-spe:NotMetallicSpecimen ]
+    ) .
+
+ex:MetallicNotMetallicDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:Reflectance
+                a-spe:Refraction
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:Reflectance, a-spe:Refraction." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:Reflectance ]
+        [ sh:class a-spe:Refraction ]
+    ) .
+
+ex:StructureSpecimenDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:BiogenicSedimentaryStructure
+                a-spe:PrimarySedimentaryStructure
+                a-spe:SecodarySedimentaryStructure
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:BiogenicSedimentaryStructure, a-spe:SecodarySedimentaryStructure, a-spe:PrimarySedimentaryStructure." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:BiogenicSedimentaryStructure ]
+        [ sh:class a-spe:PrimarySedimentaryStructure ]
+        [ sh:class a-spe:SecodarySedimentaryStructure ]
+    ) .
+
+ex:TemporalSpecimenDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:Chron
+                a-spe:Eon
+                a-spe:GeochronologicalAge
+                a-spe:GeochronologicalEpoch
+                a-spe:GeochronologicalEra
+                a-spe:GeochronologicalPeriod
+                a-spe:GeochronologicalSubage
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:Chron, a-spe:Eon, a-spe:GeochronologicalAge, a-spe:GeochronologicalEpoch, a-spe:GeochronologicalEra, a-spe:GeochronologicalPeriod, a-spe:GeochronologicalSubage." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:Chron ]
+        [ sh:class a-spe:Eon ]
+        [ sh:class a-spe:GeochronologicalAge ]
+        [ sh:class a-spe:GeochronologicalEpoch ]
+        [ sh:class a-spe:GeochronologicalEra ]
+        [ sh:class a-spe:GeochronologicalPeriod ]
+        [ sh:class a-spe:GeochronologicalSubage ]
+    ) .
+
+ex:ChronostratigraphicDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:ChronostratigraphicSeries
+                a-spe:ChronostratigraphicStage
+                a-spe:ChronostratigraphicSubstage
+                a-spe:ChronostratigraphicSystem
+                a-spe:Chronozone
+                a-spe:Eonthem
+                a-spe:Erathem
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:ChronostratigraphicSeries, a-spe:ChronostratigraphicStage, a-spe:ChronostratigraphicSubstage, a-spe:ChronostratigraphicSystem, a-spe:Chronozone, a-spe:Eonthem, a-spe:Erathem." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:ChronostratigraphicSeries ]
+        [ sh:class a-spe:ChronostratigraphicStage ]
+        [ sh:class a-spe:ChronostratigraphicSubstage ]
+        [ sh:class a-spe:ChronostratigraphicSystem ]
+        [ sh:class a-spe:Chronozone ]
+        [ sh:class a-spe:Eonthem ]
+        [ sh:class a-spe:Erathem ]
+    ) .
+
+ex:IndividualSpecimenDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:CloseIndividual
+                a-spe:HostIndividual
+                a-spe:Preparation
+                a-spe:Substrate
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:CloseIndividual, a-spe:HostIndividual, a-spe:Preparation, a-spe:Substrate." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:CloseIndividual ]
+        [ sh:class a-spe:HostIndividual ]
+        [ sh:class a-spe:Preparation ]
+        [ sh:class a-spe:Substrate ]
+    ) .
+
+ex:SampleSpecimenDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:FruitSample
+                a-spe:PlantSample
+                a-spe:PollenSample
+                a-spe:SeedSample
+                a-spe:WoodSample
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:FruitSample, a-spe:PlantSample, a-spe:PollenSample, a-spe:SeedSample, a-spe:WoodSample." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:FruitSample ]
+        [ sh:class a-spe:PlantSample ]
+        [ sh:class a-spe:PollenSample ]
+        [ sh:class a-spe:SeedSample ]
+        [ sh:class a-spe:WoodSample ]
+    ) .
+
+ex:LithostratigraphicDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:LithostratigraphicBed
+                a-spe:LithostratigraphicComplex
+                a-spe:LithostratigraphicFormation
+                a-spe:LithostratigraphicGroup
+                a-spe:LithostratigraphicMember
+                a-spe:LithostratigraphicSupergroup
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:LithostratigraphicBed, a-spe:LithostratigraphicComplex, a-spe:LithostratigraphicFormation, a-spe:LithostratigraphicGroup, a-spe:LithostratigraphicMember, a-spe:LithostratigraphicSupergroup." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:LithostratigraphicBed ]
+        [ sh:class a-spe:LithostratigraphicComplex ]
+        [ sh:class a-spe:LithostratigraphicFormation ]
+        [ sh:class a-spe:LithostratigraphicGroup ]
+        [ sh:class a-spe:LithostratigraphicMember ]
+        [ sh:class a-spe:LithostratigraphicSupergroup ]
+    ) .
+
+ex:MineralSpecimenDisjointShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rdf:type ; # soggetti con un tipo
+    sh:filterShape [     # restrizione solo se il tipo è uno dei seguenti tipi
+        sh:property [
+            sh:path rdf:type ;
+            sh:in (
+                a-spe:MineralClass
+                a-spe:MineralSpecies
+                a-spe:MineralSubclass
+            ) ;
+        ] ;
+    ] ;
+    sh:message "Un individuo può essere di una sola tipologia tra a-spe:MineralClass, a-spe:MineralSpecies, a-spe:MineralSubclass." ;
+    sh:severity sh:Violation ;
+    sh:xone ( 	# solo una classe tra le seguenti
+        [ sh:class a-spe:MineralClass ]
+        [ sh:class a-spe:MineralSpecies ]
+        [ sh:class a-spe:MineralSubclass ]
+    ) .

@@ -31,7 +31,7 @@ ex:SurveyShape
 		a-cd:a-cd:ArchaeologicalExcavation ;
 	sh:property [              
 		sh:path l0:name ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		sh:severity sh:Violation ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;

@@ -45,13 +45,13 @@ ex:CulturalEventShape
 		] ;
 	sh:property [              
 		sh:path l0:name ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		sh:minCount 1 ; 
 		sh:message "La relazione dell'evento con il suo titolo/denominazione è obbligatoria: l0:name deve essere materializzata"
 		] ;
 	# NON OBBLIGATORIE
 	sh:property [              
 		sh:path core:note ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:nodeKind sh:Literal ;
 		] .
 	

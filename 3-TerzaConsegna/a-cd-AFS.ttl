@@ -31,7 +31,11 @@ ex:ArchaeologicalFieldSurveyShape
 		sh:path a-cd:environmentalState ;     
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		sh:datatype rdfs:Literal ;
+=======
+		sh:nodeKind sh:Literal ;
+>>>>>>> Stashed changes
 =======
 		sh:nodeKind sh:Literal ;
 >>>>>>> Stashed changes
@@ -61,7 +65,11 @@ ex:ArchaeologicalFieldSurveyShape
 		sh:path a-cd:historicalInformation ;     
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		sh:datatype rdfs:Literal ;
+=======
+		sh:nodeKind sh:Literal ;
+>>>>>>> Stashed changes
 =======
 		sh:nodeKind sh:Literal ;
 >>>>>>> Stashed changes

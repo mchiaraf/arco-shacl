@@ -60,8 +60,13 @@ ex:PhotoInterpretationRenderingShape
 		sh:path a-cd:overlapSpecifications ;     
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		sh:nodeKind rdfs:Literal ;
 		] .
+=======
+		sh:nodeKind sh:Literal ;
+		] ;
+>>>>>>> Stashed changes
 =======
 		sh:nodeKind sh:Literal ;
 		] ;

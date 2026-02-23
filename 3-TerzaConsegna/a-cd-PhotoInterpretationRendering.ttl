@@ -59,4 +59,4 @@ ex:PhotoInterpretationRenderingShape
 	sh:property [              
 		sh:path a-cd:overlapSpecifications ;     
 		sh:nodeKind rdfs:Literal ;
-		] ;
+		] .

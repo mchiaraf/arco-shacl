@@ -29,7 +29,7 @@ ex:ArchaeologicalFieldSurveyShape
     sh:targetClass a-cd:ArchaeologicalFieldSurvey ;
 	sh:property [              
 		sh:path a-cd:environmentalState ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:datatype rdfs:Literal ;
 		] ;
 	
 	# SCHEDA RCG
@@ -51,6 +51,6 @@ ex:ArchaeologicalFieldSurveyShape
 		] ;
 	sh:property [              
 		sh:path a-cd:historicalInformation ;     
-		sh:nodeKind rdfs:Literal ;
+		sh:datatype rdfs:Literal ;
 		] .
 		

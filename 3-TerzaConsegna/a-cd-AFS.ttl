@@ -33,7 +33,11 @@ ex:ArchaeologicalFieldSurveyShape
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		sh:datatype rdfs:Literal ;
+=======
+		sh:nodeKind sh:Literal ;
+>>>>>>> Stashed changes
 =======
 		sh:nodeKind sh:Literal ;
 >>>>>>> Stashed changes
@@ -71,7 +75,11 @@ ex:ArchaeologicalFieldSurveyShape
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		sh:datatype rdfs:Literal ;
+=======
+		sh:nodeKind sh:Literal ;
+>>>>>>> Stashed changes
 =======
 		sh:nodeKind sh:Literal ;
 >>>>>>> Stashed changes

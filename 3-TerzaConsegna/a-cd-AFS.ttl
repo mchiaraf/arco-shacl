@@ -29,27 +29,7 @@ ex:ArchaeologicalFieldSurveyShape
     sh:targetClass a-cd:ArchaeologicalFieldSurvey ;
 	sh:property [              
 		sh:path a-cd:environmentalState ;     
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-		sh:datatype rdfs:Literal ;
-=======
 		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
-=======
-		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
-=======
-		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
-=======
-		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
-=======
-		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
 		] ;
 	
 	# SCHEDA RCG
@@ -71,26 +51,6 @@ ex:ArchaeologicalFieldSurveyShape
 		] ;
 	sh:property [              
 		sh:path a-cd:historicalInformation ;     
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-		sh:datatype rdfs:Literal ;
-=======
 		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
-=======
-		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
-=======
-		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
-=======
-		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
-=======
-		sh:nodeKind sh:Literal ;
->>>>>>> Stashed changes
 		] .
 		

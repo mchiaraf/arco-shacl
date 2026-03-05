@@ -22,21 +22,111 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix ex: <https://w3id.org/arco/shacl/> .
 
-# Bisognerebbe filtrare l'agente e fare check solo su quelli core:isDescribedBy/rdf:type a-cat:CatalogueRecordAUT
 # Agent che rispetta le obbligatorietà della normativa AUT4.00
 # !!! con ICCD capire se è okay restringere a questi campi della 4.00, che fanno perdere altre info (come luogo di nascita/morte), va bene? gli altri descrittori non vengono inclusi nello scambio
-ex:AgentShape
-    a sh:NodeShape ;
-    sh:targetClass l0:Agent ,
-		cov:Organization ,
-		cpv:Person ;
-	sh:targetSubjectsOf core:isDescribedBy ;
-	sh:property [              
-		sh:path core:isDescribedBy ;     
-		sh:class a-cat:CatalogueRecordAUT ;
-		sh:severity sh:Violation ;
-		sh:message "La relazione dell'agente con la scheda di catalogo è obbligatoria: core:isDescribedBy deve essere materializzata"
-		] ;
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix a-ce: <https://w3id.org/arco/ontology/cultural-event/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-lite: <https://w3id.org/arco/ontology/arco-lite/> .
+@prefix a-loc: <https://w3id.org/arco/ontology/location/> .
+@prefix a-cat: <https://w3id.org/arco/ontology/catalogue/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix core: <https://w3id.org/arco/ontology/core/> .
+@prefix cov: <https://w3id.org/italia/onto/COV/> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
+@prefix ipac: <https://ipac.cultura.gov.it/onto/ipac/> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
+@prefix ti: <https://w3id.org/italia/onto/TI/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <https://w3id.org/arco/shacl/> .
+
+# Dichiarazione esplicita di tutti i prefissi usati nelle query SPARQL
+ex:prefissi
+  a sh:PrefixDeclaration ;
+  sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ;
+  sh:prefix "rdf" ;
+  sh:namespace "http://www.w3.org/2000/01/rdf-schema#" ;
+  sh:prefix "rdfs" ;
+  sh:namespace "http://www.w3.org/2001/XMLSchema#" ;
+  sh:prefix "xsd" ;
+  sh:namespace "https://w3id.org/arco/ontology/core/" ;
+  sh:prefix "core" ;
+  sh:namespace "https://w3id.org/italia/onto/l0/" ;
+  sh:prefix "l0" ;
+  sh:namespace "https://w3id.org/italia/onto/CPV/" ;
+  sh:prefix "cpv" ;
+  sh:namespace "https://w3id.org/italia/onto/COV/" ;
+  sh:prefix "cov" ;
+  sh:namespace "https://w3id.org/arco/ontology/catalogue/" ;
+  sh:prefix "a-cat" ;
+  sh:namespace "https://w3id.org/italia/onto/TI/" ;
+  sh:prefix "ti" ;
+  sh:namespace "https://w3id.org/arco/ontology/context-description/" ;
+  sh:prefix "a-cd" ;
+  sh:namespace "https://w3id.org/arco/ontology/cultural-event/" ;
+  sh:prefix "a-ce" ;
+  sh:namespace "https://w3id.org/arco/ontology/denotative-description/" ;
+  sh:prefix "a-dd" ;
+  sh:namespace "https://w3id.org/arco/ontology/arco-lite/" ;
+  sh:prefix "a-lite" ;
+  sh:namespace "https://w3id.org/arco/ontology/location/" ;
+  sh:prefix "a-loc" ;
+  sh:namespace "https://w3id.org/arco/ontology/arco/" ;
+  sh:prefix "arco" ;
+  sh:namespace "http://dati.beniculturali.it/cis/" ;
+  sh:prefix "cis" ;
+  sh:namespace "https://w3id.org/italia/onto/CLV/" ;
+  sh:prefix "clv" ;
+  sh:namespace "https://ipac.cultura.gov.it/onto/ipac/" ;
+  sh:prefix "ipac" ;
+  sh:namespace "http://www.w3.org/2002/07/owl#" ;
+  sh:prefix "owl" ;
+.
+
+ex:ShapeSoggettiConCatalogo
+  a sh:NodeShape ;
+  # Target SPARQL che seleziona solo i nodi delle classi specificate 
+  # che sono soggetti di core:isDescribedBy con oggetto a-cat:CatalogueRecordAUT
+  sh:target [
+    a sh:SPARQLTarget ;
+    rdfs:comment "Seleziona Agent, Person, Organization che hanno core:isDescribedBy verso CatalogueRecordAUT" ;
+    sh:prefixes ex:prefissi ;  # Riferimento a TUTTI i prefissi dichiarati
+    sh:select """
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX core: <https://w3id.org/arco/ontology/core/>
+      PREFIX l0: <https://w3id.org/italia/onto/l0/>
+      PREFIX cpv: <https://w3id.org/italia/onto/CPV/>
+      PREFIX cov: <https://w3id.org/italia/onto/COV/>
+      PREFIX a-cat: <https://w3id.org/arco/ontology/catalogue/>
+      PREFIX ti: <https://w3id.org/italia/onto/TI/>
+      PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
+      PREFIX a-ce: <https://w3id.org/arco/ontology/cultural-event/>
+      PREFIX a-dd: <https://w3id.org/arco/ontology/denotative-description/>
+      PREFIX a-lite: <https://w3id.org/arco/ontology/arco-lite/>
+      PREFIX a-loc: <https://w3id.org/arco/ontology/location/>
+      PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+      PREFIX cis: <http://dati.beniculturali.it/cis/>
+      PREFIX clv: <https://w3id.org/italia/onto/CLV/>
+      PREFIX ipac: <https://ipac.cultura.gov.it/onto/ipac/>
+      PREFIX owl: <http://www.w3.org/2002/07/owl#>
+      
+      SELECT ?this
+      WHERE {
+        ?this a ?tipo .
+        VALUES ?tipo { l0:Agent cpv:Person cov:Organization }
+        ?this core:isDescribedBy ?catalogo .
+        ?catalogo a a-cat:CatalogueRecordAUT .
+      }
+    """ ;
+  ] ;
 	sh:property [              
 		sh:path a-lite:primaryName ;     
 		sh:nodeKind sh:Literal ;

@@ -59,7 +59,7 @@ ex:ProtectiveMeasureShape
 		] ;
 	sh:property [              
 		sh:path sm:URL ;     
-		sh:nodeKind xsd:anyURI ;
+		sh:datatype xsd:anyURI ;
 		] ;
 	sh:property [              
 		sh:path core:note ;     

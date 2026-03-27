@@ -26,7 +26,7 @@
 
 ex:CadastreShape
     a sh:NodeShape ;
-    sh:targetClass a-cd:Cadastre ;
+    sh:targetClass a-loc:Cadastre ;
 	sh:property [              
 		sh:path core:hasType ;     
 		sh:or (

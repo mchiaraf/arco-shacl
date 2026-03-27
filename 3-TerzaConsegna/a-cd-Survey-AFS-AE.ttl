@@ -28,7 +28,7 @@ ex:SurveyShape
     a sh:NodeShape ;
     sh:targetClass a-cd:ArchaeologicalFieldSurvey ,
 		a-cd:Survey ,
-		a-cd:a-cd:ArchaeologicalExcavation ;
+		a-cd:ArchaeologicalExcavation ;
 	sh:property [              
 		sh:path l0:name ;     
 		sh:nodeKind sh:Literal ;

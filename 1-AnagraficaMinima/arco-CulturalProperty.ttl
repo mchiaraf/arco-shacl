@@ -542,11 +542,13 @@ ex:CulturalPropertyShape
         sh:path a-cd:hasSurvey ;     
         sh:or (
             [ sh:class a-cd:Survey ]
-            [ sh:class a-cd:AchaeologicalExcavation ]
-            [ sh:class a-cd:AchaeologicalFieldSurvey ]
-            [ sh:class a-cd:xxx ]
-            [ sh:class a-cd:xxx ]
-            [ sh:class a-cd:xxxx ]
+            [ sh:class a-cd:ArchaeologicalExcavation ]
+            [ sh:class a-cd:ArchaeologicalFieldSurvey ]
+            [ sh:class a-cd:ArchaeometricDiagnosticSurvey ]
+            [ sh:class a-cd:Inspection ]
+            [ sh:class a-cd:LaboratoryTest ]
+            [ sh:class a-cd:ObservationSurvey ]
+            [ sh:class a-cd:PhotoInterpretationRendering ]
             ) ;
     ] ;
     sh:property [              

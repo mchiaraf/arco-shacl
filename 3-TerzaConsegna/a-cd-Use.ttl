@@ -43,7 +43,7 @@ ex:UseShape
 	
 	# NON OBBLIGATORIE
 	sh:property [              
-		sh:path a-cd:useConditions ;     
+		sh:path a-cd:useCondition ;     
 		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              

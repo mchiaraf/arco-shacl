@@ -38,7 +38,7 @@ ex:AffixedElementShape
 		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
-		sh:path core:descriprion ;     
+		sh:path core:description ;     
 		sh:nodeKind sh:Literal ;
 		] ;
 	sh:property [              
@@ -51,7 +51,7 @@ ex:AffixedElementShape
 		] ;
 	sh:property [              
 		sh:path a-dd:hasFunctionalPurpose ;    
-		sh:class a-dd:UseFunction ;
+		sh:class a-cd:UseFunction ;
 		] ;
 	sh:property [              
 		sh:path lang:hasLanguage ;    

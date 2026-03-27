@@ -67,36 +67,36 @@ ex:CampaignStatusDisjointShape
 
 ex:CatalogueNumbersAssignementDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-cc:CatalogueNumbersAssignement ;
-	sh:message "Un individuo della classe a-cc:CatalogueNumbersAssignment non può essere anche di tipo a-cc:CataloguingActivity o a-cc:CataloguingOrDigitalizationCampaign" ;
+    sh:targetClass a-cc:CatalogueNumbersAssignment ;
+	sh:message "Un individuo della classe a-cc:CatalogueNumbersAssignment non può essere anche di tipo a-cat:CataloguingActivity o a-cc:CataloguingOrDigitizationCampaign" ;
     sh:severity sh:Violation ;
 	sh:not [
 			sh:or (
 				[ sh:class a-cat:CataloguingActivity ]
-				[ sh:class a-cat:CataloguingOrDigitalizationCampaign ]
+				[ sh:class a-cat:CataloguingOrDigitizationCampaign ]
 			)
 		] .
 
 ex:CataloguingActivitytDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-cc:CatalogueNumbersAssignement ;
-	sh:message "Un individuo della classe a-cc:CataloguingActivity non può essere anche di tipo a-cc:CatalogueNumbersAssignment o a-cc:CataloguingOrDigitalizationCampaign" ;
+    sh:targetClass a-cc:CatalogueNumbersAssignment ;
+	sh:message "Un individuo della classe a-cat:CataloguingActivity non può essere anche di tipo a-cc:CatalogueNumbersAssignment o a-cc:CataloguingOrDigitizationCampaign" ;
     sh:severity sh:Violation ;
 	sh:not [
 			sh:or (
-				[ sh:class a-cc:CatalogueNumbersAssignement ]
-				[ sh:class a-cc:CataloguingOrDigitalizationCampaign ]
+				[ sh:class a-cc:CatalogueNumbersAssignment ]
+				[ sh:class a-cc:CataloguingOrDigitizationCampaign ]
 			)
 		] .
 
 ex:CataloguingOrDigitalizationCampaignDisjointShape
     a sh:NodeShape ;
-    sh:targetClass a-cc:CataloguingOrDigitalizationCampaign ;
-	sh:message "Un individuo della classe a-cc:CataloguingOrDigitalizationCampaign non può essere anche di tipo a-cc:CatalogueNumbersAssignment o a-cc:CataloguingActivity" ;
+    sh:targetClass a-cc:CataloguingOrDigitizationCampaign ;
+	sh:message "Un individuo della classe a-cc:CataloguingOrDigitizationCampaign non può essere anche di tipo a-cc:CatalogueNumbersAssignment o a-cat:CataloguingActivity" ;
     sh:severity sh:Violation ;
 	sh:not [
 			sh:or (
-				[ sh:class a-cc:CatalogueNumbersAssignement ]
-				[ sh:class a-cc:CataloguingActivity ]
+				[ sh:class a-cc:CatalogueNumbersAssignment ]
+				[ sh:class a-cat:CataloguingActivity ]
 			)
 		] .

@@ -28,7 +28,7 @@
 
 ex:CadastralIdentityShape
     a sh:NodeShape ;
-    sh:targetClass a-cd:CadastralIdentity ;
+    sh:targetClass a-loc:CadastralIdentity ;
 	sh:property [              
 		sh:path a-loc:isContainedInCadastre ;     
 		sh:class a-loc:Cadastre ;
@@ -47,7 +47,7 @@ ex:CadastralIdentityShape
 		] ;
 	sh:property [              
 		sh:path a-loc:hasCadastralEntity ;     
-		sh:class a-loc:Folio ;
+		sh:class a-loc:CadastralFolio ;
 		sh:severity sh:Violation ;
 		sh:minCount 1 ;
 		sh:message "La relazione del'identità catastale con il foglio è obbligatoria: a-loc:hasCadastralEntity deve essere materializzata"

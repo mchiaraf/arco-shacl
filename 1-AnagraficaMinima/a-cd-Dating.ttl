@@ -26,7 +26,7 @@ ex:DatingShape
     sh:targetClass a-cd:Dating ;
 	sh:property [              
 		sh:path a-cd:hasDatingEvent ;     
-		sh:class l0:Event ;
+		sh:class l0:EventOrSituation ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:severity sh:Violation ;

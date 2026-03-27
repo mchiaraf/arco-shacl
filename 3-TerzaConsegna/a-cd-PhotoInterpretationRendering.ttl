@@ -39,7 +39,7 @@ ex:PhotoInterpretationRenderingShape
 		sh:path a-cd:hasReliability ;     
 		sh:or (
 			[ sh:hasValue a-cd:InsufficientReliability ]
-			[ sh:hasValue a-cd:DecenttReliability ]
+			[ sh:hasValue a-cd:DecentReliability ]
 			[ sh:hasValue a-cd:GoodReliability ]
 			[ sh:hasValue a-cd:ExcellentReliability ]
 		) ;

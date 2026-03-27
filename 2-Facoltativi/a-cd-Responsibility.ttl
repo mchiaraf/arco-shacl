@@ -43,7 +43,7 @@ ex:ResponsibilityShape
 		sh:message "La relazione della responsabilità con il suo agente è obbligatoria: a-cd:hasAgentWithResponsibility deve essere materializzata"
 		] ;
 	sh:property [              
-		sh:path a-cd:hasIntervetionRole ;     
+		sh:path a-cd:hasInterventionRole ;     
 		sh:class ro:Role ;
 		sh:severity sh:Violation ;
 		sh:message "La relazione della responsabilità con il ruolo è obbligatoria: a-cd:hasInterventionRole deve essere materializzata"
